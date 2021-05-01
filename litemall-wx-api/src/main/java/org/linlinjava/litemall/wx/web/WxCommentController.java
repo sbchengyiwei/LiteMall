@@ -1,5 +1,8 @@
 package org.linlinjava.litemall.wx.web;
 
+import com.google.gson.Gson;
+import jodd.http.HttpRequest;
+import jodd.http.HttpResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,10 +16,12 @@ import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.dto.UserInfo;
 import org.linlinjava.litemall.wx.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +46,12 @@ public class WxCommentController {
     private LitemallGoodsService goodsService;
     @Autowired
     private LitemallTopicService topicService;
+
+    @Value("${litemall.wx.app-id}")
+    private String appid;
+    @Value("${litemall.wx.app-secret}")
+    private String secret;
+
 
     private Object validate(LitemallComment comment) {
         String content = comment.getContent();
@@ -75,6 +86,25 @@ public class WxCommentController {
         Boolean hasPicture = comment.getHasPicture();
         if (hasPicture == null || !hasPicture) {
             comment.setPicUrls(new String[0]);
+        }
+        String param="grant_type=client_credential&secret="+secret+"&appid="+appid;
+        HttpRequest request=HttpRequest.get("https://api.weixin.qq.com/cgi-bin/token?"+param);
+        HttpResponse response=request.send();
+        Gson gson=new Gson();
+        HashMap map=gson.fromJson(response.body(), HashMap.class);
+        String access_token=map.get("access_token").toString();
+        request=HttpRequest.post("https://api.weixin.qq.com/wxa/msg_sec_check?access_token="+access_token);
+        request.contentType("application/json");
+        request.charset("utf-8");
+        map=new HashMap();
+        map.put("content",comment.getContent());
+        String json=gson.toJson(map).toString();
+        request.body(json);
+        response=request.send();
+        map=gson.fromJson(response.body(),HashMap.class);
+        String errmsg=map.get("errmsg").toString();
+        if (!"ok".equals(errmsg)){
+            return ResponseUtil.badArgumentValue();
         }
         return null;
     }
@@ -141,11 +171,13 @@ public class WxCommentController {
             Map<String, Object> commentVo = new HashMap<>();
             commentVo.put("addTime", comment.getAddTime());
             commentVo.put("content", comment.getContent());
-            commentVo.put("adminContent", comment.getAdminContent());
             commentVo.put("picList", comment.getPicUrls());
-            commentVo.put("star", comment.getStar());
+
             UserInfo userInfo = userInfoService.getInfo(comment.getUserId());
             commentVo.put("userInfo", userInfo);
+
+            String reply = commentService.queryReply(comment.getId());
+            commentVo.put("reply", reply);
 
             commentVoList.add(commentVo);
         }

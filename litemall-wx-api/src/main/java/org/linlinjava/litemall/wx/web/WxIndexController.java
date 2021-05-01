@@ -3,7 +3,6 @@ package org.linlinjava.litemall.wx.web;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.ResponseUtil;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,7 @@ public class WxIndexController {
      *
      * @return 测试数据
      */
-    @GetMapping("/index")
+    @RequestMapping("/index")
     public Object index() {
         return ResponseUtil.ok("hello world, this is wx service");
     }

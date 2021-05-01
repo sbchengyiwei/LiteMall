@@ -7,6 +7,7 @@ spring:
 server:
   port: 8082
 
+
 logging:
   level:
     root:  ERROR
@@ -14,6 +15,3 @@ logging:
     org.mybatis:  ERROR
     org.linlinjava.litemall.wx:  DEBUG
     org.linlinjava.litemall:  ERROR
-
-swagger:
-  production: false

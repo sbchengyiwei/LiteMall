@@ -27,20 +27,8 @@ Page({
           totalPages: res.data.pages
         });
       }
-    }).finally(() => {
       wx.hideLoading();
     });
-  },
-  switchTab: function(event) {
-    let type = event.currentTarget.dataset.index;
-    this.setData({
-      collectList: [],
-      type,
-      page: 1,
-      limit: 10,
-      totalPages: 1
-    });
-    this.getCollectList();
   },
   onLoad: function(options) {
     this.getCollectList();
@@ -73,13 +61,15 @@ Page({
   onUnload: function() {
     // 页面关闭
   },
-  openCollect(event) {
+  openGoods(event) {
+
     let that = this;
     let index = event.currentTarget.dataset.index;
-    let valueId = this.data.collectList[index].valueId;
+    let goodsId = this.data.collectList[index].valueId;
 
     //触摸时间距离页面打开的毫秒数  
     var touchTime = that.data.touchEnd - that.data.touchStart;
+    console.log(touchTime);
     //如果按下时间大于350为长按  
     if (touchTime > 350) {
       wx.showModal({
@@ -90,9 +80,10 @@ Page({
 
             util.request(api.CollectAddOrDelete, {
               type: that.data.type,
-              valueId: valueId
+              valueId: goodsId
             }, 'POST').then(function(res) {
               if (res.errno === 0) {
+                console.log(res.data);
                 wx.showToast({
                   title: '删除成功',
                   icon: 'success',
@@ -108,12 +99,9 @@ Page({
         }
       })
     } else {
-      var prefix = '/pages/goods/goods?id='
-      if(this.data.type == 1){
-        prefix = "/pages/topicDetail/topicDetail?id="
-      }
+
       wx.navigateTo({
-        url: prefix + valueId,
+        url: '/pages/goods/goods?id=' + goodsId,
       });
     }
   },

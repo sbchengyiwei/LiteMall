@@ -47,11 +47,13 @@
 
 .form-item .clear {
   position: absolute;
-  top: 32rpx;
+  top: 26rpx;
   right: 18rpx;
   z-index: 2;
   display: block;
   background: #fff;
+  height: 44rpx;
+  width: 44rpx;
 }
 
 .login-btn {

@@ -39,11 +39,3 @@ export function deleteTopic(data) {
     data
   })
 }
-
-export function batchDeleteTopic(data) {
-  return request({
-    url: '/topic/batch-delete',
-    method: 'post',
-    data
-  })
-}

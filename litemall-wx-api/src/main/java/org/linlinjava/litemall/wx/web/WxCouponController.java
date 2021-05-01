@@ -19,10 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 优惠券服务
@@ -101,8 +104,8 @@ public class WxCouponController {
             couponVo.setName(coupon.getName());
             couponVo.setDesc(coupon.getDesc());
             couponVo.setTag(coupon.getTag());
-            couponVo.setMin(coupon.getMin());
-            couponVo.setDiscount(coupon.getDiscount());
+            couponVo.setMin(coupon.getMin().toPlainString());
+            couponVo.setDiscount(coupon.getDiscount().toPlainString());
             couponVo.setStartTime(couponUser.getStartTime());
             couponVo.setEndTime(couponUser.getEndTime());
 
@@ -129,7 +132,7 @@ public class WxCouponController {
 
         // 团购优惠
         BigDecimal grouponPrice = new BigDecimal(0.00);
-        LitemallGrouponRules grouponRules = grouponRulesService.findById(grouponRulesId);
+        LitemallGrouponRules grouponRules = grouponRulesService.queryById(grouponRulesId);
         if (grouponRules != null) {
             grouponPrice = grouponRules.getDiscount();
         }
@@ -139,7 +142,7 @@ public class WxCouponController {
         if (cartId == null || cartId.equals(0)) {
             checkedGoodsList = cartService.queryByUidAndChecked(userId);
         } else {
-            LitemallCart cart = cartService.findById(userId, cartId);
+            LitemallCart cart = cartService.findById(cartId);
             if (cart == null) {
                 return ResponseUtil.badArgumentValue();
             }
@@ -155,11 +158,12 @@ public class WxCouponController {
                 checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
             }
         }
+
         // 计算优惠券可用情况
         List<LitemallCouponUser> couponUserList = couponUserService.queryAll(userId);
         List<CouponVo> couponVoList = change(couponUserList);
         for (CouponVo cv : couponVoList) {
-            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, cv.getCid(), cv.getId(), checkedGoodsPrice, checkedGoodsList);
+            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, cv.getCid(), cv.getId(), checkedGoodsPrice);
             cv.setAvailable(coupon != null);
         }
 

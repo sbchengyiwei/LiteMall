@@ -10,9 +10,7 @@ Page({
     topicList: [],
     commentCount: 0,
     commentList: [],
-    topicGoods: [],
-    collect: false,
-    userHasCollect: 0
+    topicGoods: []
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -27,9 +25,7 @@ Page({
       if (res.errno === 0) {
         that.setData({
           topic: res.data.topic,
-          topicGoods: res.data.goods,
-          userHasCollect: res.data.userHasCollect,
-          collect: res.data.userHasCollect == 1
+          topicGoods: res.data.goods
         });
 
         WxParse.wxParse('topicDetail', 'html', res.data.topic.content, that);
@@ -63,31 +59,6 @@ Page({
       }
     });
   },
-
-  //添加或是取消收藏
-  addCollectOrNot: function() {
-    let that = this;
-    util.request(api.CollectAddOrDelete, {
-        type: 1,
-        valueId: this.data.id
-      }, "POST")
-      .then(function(res) {
-        if (that.data.userHasCollect == 1) {
-          that.setData({
-            collect: false,
-            userHasCollect: 0
-          });
-        } else {
-          that.setData({
-            collect: true,
-            userHasCollect: 1
-          });
-        }
-
-      });
-
-  },
-
   postComment() {
     if (!app.globalData.hasLogin) {
       wx.navigateTo({

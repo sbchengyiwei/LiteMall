@@ -55,7 +55,7 @@ public class WxFeedbackController {
         if (StringUtils.isEmpty(mobile)) {
             return ResponseUtil.badArgument();
         }
-        if (!RegexUtil.isMobileSimple(mobile)) {
+        if (!RegexUtil.isMobileExact(mobile)) {
             return ResponseUtil.badArgument();
         }
         return null;

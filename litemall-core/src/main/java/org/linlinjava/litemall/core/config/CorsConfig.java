@@ -17,7 +17,6 @@ public class CorsConfig {
         corsConfiguration.addAllowedHeader("*"); // 2 设置访问源请求头
         corsConfiguration.addAllowedMethod("*"); // 3 设置访问源请求方法
         corsConfiguration.setMaxAge(maxAge);
-        corsConfiguration.setAllowCredentials(true);
         return corsConfiguration;
     }
 

@@ -29,12 +29,11 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        filterChainDefinitionMap.put("/admin/auth/kaptcha", "anon");
         filterChainDefinitionMap.put("/admin/auth/login", "anon");
         filterChainDefinitionMap.put("/admin/auth/401", "anon");
         filterChainDefinitionMap.put("/admin/auth/index", "anon");
         filterChainDefinitionMap.put("/admin/auth/403", "anon");
-        filterChainDefinitionMap.put("/admin/index/*", "anon");
+        filterChainDefinitionMap.put("/admin/index/index", "anon");
 
         filterChainDefinitionMap.put("/admin/**", "authc");
         shiroFilterFactoryBean.setLoginUrl("/admin/auth/401");

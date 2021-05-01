@@ -137,7 +137,6 @@ page {
 
 .user_column_item_phone {
   width: 30%;
-  height: 140rpx;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -145,12 +144,11 @@ page {
   flex-wrap: wrap;
   float: left;
   background: #fff;
-  border-radius: 0;
+  border-bottom: 1px solid #fafafa;
 }
 
 .user_column_item_phone::after {
   border: none;
-  border-radius: 0;
 }
 
 .logout {

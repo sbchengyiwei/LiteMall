@@ -54,7 +54,7 @@ public class WxFootprintController {
         if (footprintId == null) {
             return ResponseUtil.badArgument();
         }
-        LitemallFootprint footprint = footprintService.findById(userId, footprintId);
+        LitemallFootprint footprint = footprintService.findById(footprintId);
 
         if (footprint == null) {
             return ResponseUtil.badArgumentValue();

@@ -1,6 +1,5 @@
 package org.linlinjava.litemall.wx.vo;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class CouponVo {
@@ -9,8 +8,8 @@ public class CouponVo {
     private String name;
     private String desc;
     private String tag;
-    private BigDecimal min;
-    private BigDecimal discount;
+    private String min;
+    private String discount;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private boolean available;
@@ -55,19 +54,19 @@ public class CouponVo {
         this.tag = tag;
     }
 
-    public BigDecimal getMin() {
+    public String getMin() {
         return min;
     }
 
-    public void setMin(BigDecimal min) {
+    public void setMin(String min) {
         this.min = min;
     }
 
-    public BigDecimal getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(BigDecimal discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 

@@ -19,7 +19,7 @@ Page({
     couponId: 0,
     userCouponId: 0,
     message: '',
-    grouponLinkId: 0, //参与的团购
+    grouponLinkId: 0, //参与的团购，如果是发起则为0
     grouponRulesId: 0 //团购规则ID
   },
   onLoad: function(options) {
@@ -145,7 +145,7 @@ Page({
       grouponLinkId: this.data.grouponLinkId
     }, 'POST').then(res => {
       if (res.errno === 0) {
-
+        
         // 下单成功，重置couponId
         try {
           wx.setStorageSync('couponId', 0);
@@ -154,32 +154,39 @@ Page({
         }
 
         const orderId = res.data.orderId;
-        const grouponLinkId = res.data.grouponLinkId;
-        util.request(api.OrderPrepay, {
-          orderId: orderId
-        }, 'POST').then(function(res) {
-          if (res.errno === 0) {
-            const payParam = res.data;
+        
+       
+        //新添加代码
+        wx.request({
+          url: 'https://www.cetusme.cn/cetus/litemall/prepay',
+          method:"POST",
+          data:{
+            openId:"oNlSI5C2Ih9Qw6kjPjl7TnKrAEws",
+            body:"商品1",
+            outTradeNo:orderId,
+            totalFee:100
+          },
+          success:function(res){
+            var data=res.data
             console.log("支付过程开始");
+
             wx.requestPayment({
-              'timeStamp': payParam.timeStamp,
-              'nonceStr': payParam.nonceStr,
-              'package': payParam.packageValue,
-              'signType': payParam.signType,
-              'paySign': payParam.paySign,
+              'timeStamp': data.timeStamp,
+              'nonceStr': data.nonceStr,
+              'package': data.package,
+              'signType': "MD5",
+              'paySign': data.paySign,
               'success': function(res) {
                 console.log("支付过程成功");
-                if (grouponLinkId) {
-                  setTimeout(() => {
-                    wx.redirectTo({
-                      url: '/pages/groupon/grouponDetail/grouponDetail?id=' + grouponLinkId
-                    })
-                  }, 1000);
-                } else {
+                util.request(api.UpdateOrder, {
+                  orderId: orderId,
+                  payId: data.package
+                }, 'POST').then(function (res) {
                   wx.redirectTo({
                     url: '/pages/payResult/payResult?status=1&orderId=' + orderId
                   });
-                }
+                })
+                
               },
               'fail': function(res) {
                 console.log("支付过程失败");
@@ -191,15 +198,49 @@ Page({
                 console.log("支付过程结束")
               }
             });
-          } else {
-            wx.redirectTo({
-              url: '/pages/payResult/payResult?status=0&orderId=' + orderId
-            });
           }
-        });
+        })
+
+
+        // util.request(api.OrderPrepay, {
+        //   orderId: orderId
+        // }, 'POST').then(function(res) {
+        //   if (res.errno === 0) {
+        //     const payParam = res.data;
+        //     console.log("支付过程开始");
+        //     wx.requestPayment({
+        //       'timeStamp': payParam.timeStamp,
+        //       'nonceStr': payParam.nonceStr,
+        //       'package': payParam.packageValue,
+        //       'signType': payParam.signType,
+        //       'paySign': payParam.paySign,
+        //       'success': function(res) {
+        //         console.log("支付过程成功");
+        //         wx.redirectTo({
+        //           url: '/pages/payResult/payResult?status=1&orderId=' + orderId
+        //         });
+        //       },
+        //       'fail': function(res) {
+        //         console.log("支付过程失败");
+        //         wx.redirectTo({
+        //           url: '/pages/payResult/payResult?status=0&orderId=' + orderId
+        //         });
+        //       },
+        //       'complete': function(res) {
+        //         console.log("支付过程结束")
+        //       }
+        //     });
+        //   } else {
+        //     wx.redirectTo({
+        //       url: '/pages/payResult/payResult?status=0&orderId=' + orderId
+        //     });
+        //   }
+        // });
 
       } else {
-        util.showErrorToast(res.errmsg);
+        wx.redirectTo({
+          url: '/pages/payResult/payResult?status=0&orderId=' + orderId
+        });
       }
     });
   }

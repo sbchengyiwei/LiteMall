@@ -55,7 +55,7 @@ Page({
       wx.hideLoading();
     });
   },
-  // “去付款”按钮点击效果
+  //“去付款”按钮点击效果
   payOrder: function() {
     let that = this;
     util.request(api.OrderPrepay, {
@@ -86,6 +86,7 @@ Page({
     });
 
   },
+
   // “取消订单”点击效果
   cancelOrder: function() {
     let that = this;
@@ -189,15 +190,6 @@ Page({
         }
       }
     });
-  },
-  // “申请售后”点击效果
-  aftersaleOrder: function () {
-    if(this.data.orderInfo.aftersaleStatus === 0){
-      util.redirect('/pages/ucenter/aftersale/aftersale?id=' + this.data.orderId );
-    }
-    else{
-      util.redirect('/pages/ucenter/aftersaleDetail/aftersaleDetail?id=' + this.data.orderId);
-    }
   },
   onReady: function() {
     // 页面渲染完成

@@ -2,20 +2,15 @@
 <view class="container">
 <view class="search">
     <navigator url="/pages/search/search" class="input">
-      <van-icon name="search"/>
+      <image class="icon"></image>
       <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
     </navigator>
   </view>
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{banner}}" wx:key="id">
-      <block wx:if="{{item.link>0}}">
-        <navigator url="/pages/goods/goods?id={{item.link}}">
-        <image src="{{item.url}}" background-size="cover"></image>
-        </navigator>
-      </block>
-      <block wx:else>
-        <image src="{{item.url}}" background-size="cover"></image>
-      </block>
+      <!-- <navigator url="{{item.link}}"> -->
+      <image src="{{item.url}}" background-size="cover"></image>
+      <!-- </navigator> -->
     </swiper-item>
   </swiper>
   <view class="m-menu">
@@ -72,10 +67,9 @@
             <view class="text">
               <view class="header">
                 <text class="name">{{item.name}}</text>
-                <van-tag type="primary">{{item.grouponMember}}人成团</van-tag>
-              </view>
-              <view class="expire">
-                <van-tag round type="warning">有效期至 {{item.expireTime}}</van-tag>
+                <view class="capsule-tag">
+                  <zan-capsule color="#a78845" leftText="{{item.grouponMember}}人成团" rightText="立减{{item.grouponDiscount}}" />
+                </view>
               </view>
               <text class="desc">{{item.brief}}</text>
               <view class="price">
@@ -177,7 +171,7 @@
     </view>
   </view>
   <view class="good-grid" wx:for="{{floorGoods}}" wx:key="id">
-    <view class="h" wx:if="{{item.goodsList.length>0}}">
+    <view class="h">
       <text>{{item.name}}</text>
     </view>
     <view class="b">
@@ -191,7 +185,7 @@
         </view>
       </block>
     </view>
-    <navigator url="/pages/category/category?id={{item.id}}" class="t" wx:if="{{item.goodsList.length>0}}">
+    <navigator url="/pages/category/category?id={{item.id}}" class="t">
       <view class="txt">{{'更多'+item.name+'好物 >'}}</view>
     </navigator>
   </view>

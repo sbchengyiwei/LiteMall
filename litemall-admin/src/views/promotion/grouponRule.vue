@@ -3,7 +3,7 @@
 
     <!-- 查询和其他操作 -->
     <div class="filter-container">
-      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 200px;" placeholder="请输入商品编号" />
+      <el-input v-model="listQuery.goodsId" clearable class="filter-item" style="width: 200px;" placeholder="请输入商品编号"/>
       <el-button v-permission="['GET /admin/groupon/list']" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
       <el-button v-permission="['POST /admin/groupon/create']" class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
       <el-button
@@ -11,18 +11,15 @@
         class="filter-item"
         type="primary"
         icon="el-icon-download"
-        @click="handleDownload"
-      >导出
+        @click="handleDownload">导出
       </el-button>
     </div>
 
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
-      <el-table-column align="center" label="团购规则ID" prop="id" />
+      <el-table-column align="center" label="商品ID" prop="goodsId"/>
 
-      <el-table-column align="center" label="商品ID" prop="goodsId" />
-
-      <el-table-column align="center" min-width="100" label="名称" prop="goodsName" />
+      <el-table-column align="center" min-width="100" label="名称" prop="goodsName"/>
 
       <el-table-column align="center" property="picUrl" label="图片">
         <template slot-scope="scope">
@@ -30,17 +27,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="团购优惠" prop="discount" />
+      <el-table-column align="center" label="团购优惠" prop="discount"/>
 
-      <el-table-column align="center" label="团购要求" prop="discountMember" />
+      <el-table-column align="center" label="团购要求" prop="discountMember"/>
 
-      <el-table-column align="center" label="状态" prop="status">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status === 0 ? 'success' : 'error' ">{{ statusMap[scope.row.status] }}</el-tag>
-        </template>
-      </el-table-column>
+      <el-table-column align="center" label="开始时间" prop="addTime"/>
 
-      <el-table-column align="center" label="结束时间" prop="expireTime" />
+      <el-table-column align="center" label="结束时间" prop="expireTime"/>
 
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -58,25 +51,23 @@
         :model="dataForm"
         status-icon
         label-position="left"
-        label-width="120px"
-        style="width: 400px; margin-left:50px;"
-      >
+        label-width="100px"
+        style="width: 400px; margin-left:50px;">
         <el-form-item label="商品ID" prop="goodsId">
-          <el-input v-model="dataForm.goodsId" />
+          <el-input v-model="dataForm.goodsId"/>
         </el-form-item>
         <el-form-item label="团购折扣" prop="discount">
-          <el-input v-model="dataForm.discount" />
+          <el-input v-model="dataForm.discount"/>
         </el-form-item>
         <el-form-item label="团购人数要求" prop="discountMember">
-          <el-input v-model="dataForm.discountMember" />
+          <el-input v-model="dataForm.discountMember"/>
         </el-form-item>
         <el-form-item label="过期时间" prop="expireTime">
           <el-date-picker
             v-model="dataForm.expireTime"
             type="datetime"
             placeholder="选择日期"
-            value-format="yyyy-MM-dd HH:mm:ss"
-          />
+            value-format="yyyy-MM-dd HH:mm:ss"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -89,7 +80,7 @@
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
     <el-tooltip placement="top" content="返回顶部">
-      <back-to-top :visibility-height="100" />
+      <back-to-top :visibility-height="100"/>
     </el-tooltip>
 
   </div>
@@ -129,16 +120,8 @@ export default {
         update: '编辑',
         create: '创建'
       },
-      statusMap: [
-        '正常',
-        '到期下线',
-        '提前下线'
-      ],
       rules: {
-        goodsId: [{ required: true, message: '商品不能为空', trigger: 'blur' }],
-        discount: [{ required: true, message: '团购折扣不能为空', trigger: 'blur' }],
-        discountMember: [{ required: true, message: '团购人数不能为空', trigger: 'blur' }],
-        expireTime: [{ required: true, message: '过期时间不能为空', trigger: 'blur' }]
+        goodsId: [{ required: true, message: '商品不能为空', trigger: 'blur' }]
       }
     }
   },
@@ -237,7 +220,8 @@ export default {
           title: '成功',
           message: '删除团购规则成功'
         })
-        this.getList()
+        const index = this.list.indexOf(row)
+        this.list.splice(index, 1)
       }).catch(response => {
         this.$notify.error({
           title: '失败',

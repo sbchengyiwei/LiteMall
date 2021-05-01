@@ -1,4 +1,4 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import { asyncRouterMap, constantRouterMap } from '@/router'
 
 /**
  * 通过meta.perms判断是否与当前用户权限匹配
@@ -15,16 +15,16 @@ function hasPermission(perms, route) {
 
 /**
  * 递归过滤异步路由表，返回符合用户角色权限的路由表
- * @param routes asyncRoutes
+ * @param routes asyncRouterMap
  * @param perms
  */
-function filterAsyncRoutes(routes, perms) {
+function filterAsyncRouter(routes, perms) {
   const res = []
 
   routes.forEach(route => {
     const tmp = { ...route }
     if (tmp.children) {
-      tmp.children = filterAsyncRoutes(tmp.children, perms)
+      tmp.children = filterAsyncRouter(tmp.children, perms)
       if (tmp.children && tmp.children.length > 0) {
         res.push(tmp)
       }
@@ -40,26 +40,26 @@ function filterAsyncRoutes(routes, perms) {
 
 const permission = {
   state: {
-    routes: constantRoutes,
-    addRoutes: []
+    routers: constantRouterMap,
+    addRouters: []
   },
   mutations: {
-    SET_ROUTES: (state, routes) => {
-      state.addRoutes = routes
-      state.routes = constantRoutes.concat(routes)
+    SET_ROUTERS: (state, routers) => {
+      state.addRouters = routers
+      state.routers = constantRouterMap.concat(routers)
     }
   },
   actions: {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
         const { perms } = data
-        let accessedRoutes
+        let accessedRouters
         if (perms.includes('*')) {
-          accessedRoutes = asyncRoutes
+          accessedRouters = asyncRouterMap
         } else {
-          accessedRoutes = filterAsyncRoutes(asyncRoutes, perms)
+          accessedRouters = filterAsyncRouter(asyncRouterMap, perms)
         }
-        commit('SET_ROUTES', accessedRoutes)
+        commit('SET_ROUTERS', accessedRouters)
         resolve()
       })
     }

@@ -11,7 +11,8 @@ Page({
     scrollTop: 0,
     scrollHeight: 0,
     page: 1,
-    limit: 10
+    limit: 10,
+    pages:1
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -33,6 +34,16 @@ Page({
 
     this.getCategoryInfo();
 
+  },
+  onReachBottom:function(){
+    var that=this
+    if(that.data.page>=that.data.pages){
+      return
+    }
+    that.setData({
+      page:that.data.page+1
+    })
+    that.getGoodsList()
   },
   getCategoryInfo: function() {
     let that = this;
@@ -91,7 +102,6 @@ Page({
   },
   getGoodsList: function() {
     var that = this;
-
     util.request(api.GoodsList, {
         categoryId: that.data.id,
         page: that.data.page,
@@ -99,13 +109,17 @@ Page({
       })
       .then(function(res) {
         that.setData({
-          goodsList: res.data.list,
+          goodsList: that.data.goodsList.concat(res.data.list),
+          pages:res.data.pages
         });
+
       });
   },
   onUnload: function() {
     // 页面关闭
   },
+  
+
   switchCate: function(event) {
     if (this.data.id == event.currentTarget.dataset.id) {
       return false;

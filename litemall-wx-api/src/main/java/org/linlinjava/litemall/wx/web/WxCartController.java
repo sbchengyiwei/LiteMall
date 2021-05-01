@@ -258,6 +258,9 @@ public class WxCartController {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
+        if (cart == null) {
+            return ResponseUtil.badArgument();
+        }
         Integer productId = cart.getProductId();
         Integer number = cart.getNumber().intValue();
         Integer goodsId = cart.getGoodsId();
@@ -271,7 +274,7 @@ public class WxCartController {
 
         //判断是否存在该订单
         // 如果不存在，直接返回错误
-        LitemallCart existCart = cartService.findById(userId, id);
+        LitemallCart existCart = cartService.findById(id);
         if (existCart == null) {
             return ResponseUtil.badArgumentValue();
         }
@@ -435,7 +438,7 @@ public class WxCartController {
 
         // 团购优惠
         BigDecimal grouponPrice = new BigDecimal(0.00);
-        LitemallGrouponRules grouponRules = grouponRulesService.findById(grouponRulesId);
+        LitemallGrouponRules grouponRules = grouponRulesService.queryById(grouponRulesId);
         if (grouponRules != null) {
             grouponPrice = grouponRules.getDiscount();
         }
@@ -445,7 +448,7 @@ public class WxCartController {
         if (cartId == null || cartId.equals(0)) {
             checkedGoodsList = cartService.queryByUidAndChecked(userId);
         } else {
-            LitemallCart cart = cartService.findById(userId, cartId);
+            LitemallCart cart = cartService.findById(cartId);
             if (cart == null) {
                 return ResponseUtil.badArgumentValue();
             }
@@ -469,7 +472,8 @@ public class WxCartController {
         int tmpCouponLength = 0;
         List<LitemallCouponUser> couponUserList = couponUserService.queryAll(userId);
         for(LitemallCouponUser couponUser : couponUserList){
-            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponUser.getCouponId(), couponUser.getId(), checkedGoodsPrice, checkedGoodsList);
+            tmpUserCouponId = couponUser.getId();
+            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponUser.getCouponId(), tmpUserCouponId, checkedGoodsPrice);
             if(coupon == null){
                 continue;
             }
@@ -478,7 +482,6 @@ public class WxCartController {
             if(tmpCouponPrice.compareTo(coupon.getDiscount()) == -1){
                 tmpCouponPrice = coupon.getDiscount();
                 tmpCouponId = coupon.getId();
-                tmpUserCouponId = couponUser.getId();
             }
         }
         // 获取优惠券减免金额，优惠券可用数量
@@ -498,7 +501,7 @@ public class WxCartController {
             userCouponId = tmpUserCouponId;
         }
         else {
-            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponId, userCouponId, checkedGoodsPrice, checkedGoodsList);
+            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponId, userCouponId, checkedGoodsPrice);
             // 用户选择的优惠券有问题，则选择合适优惠券，否则使用用户选择的优惠券
             if(coupon == null){
                 couponPrice = tmpCouponPrice;

@@ -27,11 +27,9 @@ public class WxOrderController {
      * 订单列表
      *
      * @param userId   用户ID
-     * @param showType 显示类型，如果是0则是全部订单
+     * @param showType 订单信息
      * @param page     分页页数
      * @param limit     分页大小
-     * @param sort     排序字段
-     * @param order     排序方式
      * @return 订单列表
      */
     @GetMapping("list")
@@ -180,6 +178,18 @@ public class WxOrderController {
     @PostMapping("comment")
     public Object comment(@LoginUser Integer userId, @RequestBody String body) {
         return wxOrderService.comment(userId, body);
+    }
+
+    /**
+     * 修改订单为已支付
+     *
+     * @param userId 用户ID
+     * @param body   订单信息，{ orderId：xxx }
+     * @return 订单操作结果
+     */
+    @PostMapping("update-order")
+    public Object updateOrder(@LoginUser Integer userId, @RequestBody String body) {
+        return wxOrderService.updateOrder(userId,body);
     }
 
 }

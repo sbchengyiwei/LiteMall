@@ -7,7 +7,7 @@ Page({
   data: {
     userInfo: {
       nickName: '点击登录',
-      avatarUrl: '/static/images/my.png'
+      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
     },
     order: {
       unpaid: 0,
@@ -190,15 +190,11 @@ Page({
     });
   },
   goAfterSale: function() {
-    if (this.data.hasLogin) {
-      wx.navigateTo({
-        url: "/pages/ucenter/aftersaleList/aftersaleList"
-      });
-    } else {
-      wx.navigateTo({
-        url: "/pages/auth/login/login"
-      });
-    };
+    wx.showToast({
+      title: '目前不支持',
+      icon: 'none',
+      duration: 2000
+    });
   },
   aboutUs: function() {
     wx.navigateTo({

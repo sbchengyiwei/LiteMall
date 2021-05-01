@@ -79,7 +79,7 @@ public class WxAddressController extends GetRegionService {
 		if (StringUtils.isEmpty(mobile)) {
 			return ResponseUtil.badArgument();
 		}
-		if (!RegexUtil.isMobileSimple(mobile)) {
+		if (!RegexUtil.isMobileExact(mobile)) {
 			return ResponseUtil.badArgument();
 		}
 
@@ -133,28 +133,20 @@ public class WxAddressController extends GetRegionService {
 			return error;
 		}
 
-		if (address.getId() == null || address.getId().equals(0)) {
-			if (address.getIsDefault()) {
-				// 重置其他收货地址的默认选项
-				addressService.resetDefault(userId);
-			}
+		if (address.getIsDefault()) {
+			// 重置其他收货地址的默认选项
+			addressService.resetDefault(userId);
+		}
 
+		if (address.getId() == null || address.getId().equals(0)) {
 			address.setId(null);
 			address.setUserId(userId);
 			addressService.add(address);
 		} else {
-			LitemallAddress litemallAddress = addressService.query(userId, address.getId());
-			if (litemallAddress == null) {
-				return ResponseUtil.badArgumentValue();
-			}
-
-			if (address.getIsDefault()) {
-				// 重置其他收货地址的默认选项
-				addressService.resetDefault(userId);
-			}
-
 			address.setUserId(userId);
-			addressService.update(address);
+			if (addressService.update(address) == 0) {
+				return ResponseUtil.updatedDataFailed();
+			}
 		}
 		return ResponseUtil.ok(address.getId());
 	}
@@ -174,10 +166,6 @@ public class WxAddressController extends GetRegionService {
 		Integer id = address.getId();
 		if (id == null) {
 			return ResponseUtil.badArgument();
-		}
-		LitemallAddress litemallAddress = addressService.query(userId, id);
-		if (litemallAddress == null) {
-			return ResponseUtil.badArgumentValue();
 		}
 
 		addressService.delete(id);

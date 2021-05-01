@@ -36,6 +36,7 @@
 .comments .h .i {
   display: block;
   float: right;
+  margin-top: 30rpx;
   width: 33rpx;
   height: 33rpx;
 }
@@ -125,7 +126,13 @@
   text-align: center;
   font-size: 29rpx;
   color: #7f7f7f;
-  padding-top: 150rpx;
+}
+
+.no-comments .icon {
+  margin: 48rpx auto 18rpx auto;
+  height: 130rpx;
+  display: block;
+  width: 115rpx;
 }
 
 .sv-goods {
@@ -142,13 +149,6 @@
   width: 720rpx;
   padding-right: 30rpx;
   border-bottom: 1px solid #d9d9d9;
-}
-
-.topic-goods .h .i {
-  display: block;
-  float: right;
-  width: 33rpx;
-  height: 33rpx;
 }
 
 .topic-goods .h .t {

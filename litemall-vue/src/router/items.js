@@ -5,8 +5,7 @@ export default [
     path: '/items',
     name: 'class',
     meta: {
-      keepAlive: true,
-      showHeader:false
+      keepAlive: true
     },
     components: {
       default:  () => import('@/views/items/tabbar-catalog'),
@@ -17,9 +16,7 @@ export default [
     path: '/items/search',
     name: 'search',
     meta: {
-      keepAlive: true,
-      title:"搜索",
-      showHeader:false
+      keepAlive: true
     },
     component: () => import('@/views/items/search')
   },

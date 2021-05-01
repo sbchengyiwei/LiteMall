@@ -1,7 +1,7 @@
 <template>
   <div class="set_nickname">
     <van-cell-group>
-      <van-field v-model="nickName" label="昵称" />
+      <van-field v-model="nickName" label="昵称"/>
     </van-cell-group>
 
     <div class="bottom_btn">
@@ -9,6 +9,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import { authProfile } from '@/api/api';
@@ -30,12 +31,16 @@ export default {
       this.nickName = localStorage.getItem('nickName') || '';
     },
     saveNick() {
-      authProfile({ nickname: this.nickName }).then(res => {
-        localStorage.setItem('nickName', this.nickName);
-        this.$dialog.alert({ message: '保存成功' }).then(() => {
-          this.$router.go(-1);
-        });
-      });
+      if (true) {
+        authProfile({ nickName: this.nickName })
+          .then(res => {
+            localStorage.setItem('nickName', res.data.data.nickName);
+            return this.$dialog.alert({ message: '保存成功' });
+          })
+          .then(() => {
+            this.$router.go(-1);
+          });
+      }
     }
   },
 
@@ -44,6 +49,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .bottom_btn {

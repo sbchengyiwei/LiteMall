@@ -2,7 +2,6 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallTopicMapper;
-import org.linlinjava.litemall.db.domain.LitemallGroupon;
 import org.linlinjava.litemall.db.domain.LitemallTopic;
 import org.linlinjava.litemall.db.domain.LitemallTopic.Column;
 import org.linlinjava.litemall.db.domain.LitemallTopicExample;
@@ -101,12 +100,4 @@ public class LitemallTopicService {
     }
 
 
-    public void deleteByIds(List<Integer> ids) {
-        LitemallTopicExample example = new LitemallTopicExample();
-        example.or().andIdIn(ids).andDeletedEqualTo(false);
-        LitemallTopic topic = new LitemallTopic();
-        topic.setUpdateTime(LocalDateTime.now());
-        topic.setDeleted(true);
-        topicMapper.updateByExampleSelective(topic, example);
-    }
 }

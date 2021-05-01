@@ -5,27 +5,20 @@
         <h3 class="title">管理员登录</h3>
       </div>
       <el-form-item prop="username">
-        <span class="svg-container">
+        <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.username" name="username" type="text" tabindex="1" auto-complete="on" placeholder="管理员账户" />
+        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
-        <el-input v-model="loginForm.password" :type="passwordType" name="password" auto-complete="on" tabindex="2" show-password placeholder="管理员密码" @keyup.enter.native="handleLogin" />
-      </el-form-item>
-
-      <el-form-item prop="code">
-        <span class="svg-container">
-          <svg-icon icon-class="lock" />
+        <el-input :type="passwordType" v-model="loginForm.password" name="password" auto-complete="on" placeholder="password" @keyup.enter.native="handleLogin" />
+        <span class="show-pwd" @click="showPwd">
+          <svg-icon icon-class="eye" />
         </span>
-        <el-input v-model="loginForm.code" auto-complete="off" name="code" tabindex="2" placeholder="验证码" style="width: 60%" @keyup.enter.native="handleLogin" />
-        <div class="login-code">
-          <img :src="codeImg" @click="getCode">
-        </div>
       </el-form-item>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
@@ -46,15 +39,10 @@
       </div>
     </el-form>
 
-    <div class="copyright">
-      Copyright © 2020 xxx.com 版权所有 <a href="http://www.example.com/">沪ICP备xxx号</a>
-    </div>
   </div>
 </template>
 
 <script>
-import { getKaptcha } from '@/api/login'
-
 export default {
   name: 'Login',
   data() {
@@ -68,10 +56,8 @@ export default {
     return {
       loginForm: {
         username: 'admin123',
-        password: 'admin123',
-        code: ''
+        password: 'admin123'
       },
-      codeImg: '',
       loginRules: {
         username: [{ required: true, message: '管理员账户不允许为空', trigger: 'blur' }],
         password: [
@@ -93,17 +79,18 @@ export default {
 
   },
   created() {
-    this.getCode()
     // window.addEventListener('hashchange', this.afterQRScan)
   },
   destroyed() {
     // window.removeEventListener('hashchange', this.afterQRScan)
   },
   methods: {
-    getCode() {
-      getKaptcha().then(response => {
-        this.codeImg = response.data.data
-      })
+    showPwd() {
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
+      } else {
+        this.passwordType = 'password'
+      }
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -113,9 +100,6 @@ export default {
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(response => {
-            if (response.data.data) {
-              this.codeImg = response.data.data
-            }
             this.$notify.error({
               title: '失败',
               message: response.data.errmsg
@@ -131,19 +115,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
-
-$bg:#283443;
-$light_gray:#fff;
-$cursor: #fff;
-
-@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-  .login-container .el-input input {
-    color: $cursor;
-  }
-}
+<style rel="stylesheet/scss" lang="scss">
+$bg:#2d3a4b;
+$light_gray:#eee;
 
 /* reset element-ui css */
 .login-container {
@@ -151,7 +125,6 @@ $cursor: #fff;
     display: inline-block;
     height: 47px;
     width: 85%;
-
     input {
       background: transparent;
       border: 0px;
@@ -160,15 +133,13 @@ $cursor: #fff;
       padding: 12px 5px 12px 15px;
       color: $light_gray;
       height: 47px;
-      caret-color: $cursor;
-
       &:-webkit-autofill {
         box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
+        -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
+        -webkit-text-fill-color: #fff !important;
       }
     }
   }
-
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.1);
@@ -178,79 +149,63 @@ $cursor: #fff;
 }
 </style>
 
-<style lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
 .login-container {
-  min-height: 100%;
+  position: fixed;
+  height: 100%;
   width: 100%;
   background-color: $bg;
-  overflow: hidden;
-
   .login-form {
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
     width: 520px;
-    max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  .login-code {
-    padding-top: 5px;
-    float: right;
-    img{
-      cursor: pointer;
-      vertical-align:middle
-    }
+    padding: 35px 35px 15px 35px;
+    margin: 120px auto;
   }
   .tips {
     font-size: 14px;
     color: #fff;
     margin-bottom: 10px;
-
     span {
       &:first-of-type {
         margin-right: 16px;
       }
     }
   }
-
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $dark_gray;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
+    &_login {
+      font-size: 20px;
+    }
   }
-
   .title-container {
     position: relative;
-
     .title {
       font-size: 26px;
+      font-weight: 400;
       color: $light_gray;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
     }
   }
-  .copyright {
-    font-size: 12px;
-    color: #fff;
+  .show-pwd {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 20px;
-    letter-spacing: 0.6px;
-    a {
-      font-weight: bold;
-      border-bottom: 1px solid #fff;
-      font-family: "PingFangSC-Semibold", sans-serif;
-    }
+    right: 10px;
+    top: 7px;
+    font-size: 16px;
+    color: $dark_gray;
+    cursor: pointer;
+    user-select: none;
   }
 }
 </style>
-

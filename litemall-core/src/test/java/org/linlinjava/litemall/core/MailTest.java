@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.task.SyncTaskExecutor;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.concurrent.Executor;
@@ -27,7 +26,7 @@ import java.util.concurrent.Executor;
  * 2. 在相应的邮件服务器设置正确
  */
 @WebAppConfiguration
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class MailTest {
 

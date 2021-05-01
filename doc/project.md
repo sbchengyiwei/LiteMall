@@ -4,7 +4,7 @@
 
 litemall是一个简单的商场系统，基于现有的开源项目，重新实现一个完整的前后端项目，包含小程序客户端、移动客户端和网页管理端。
 
-![](./pics/project/project-structure.png)
+![](./pic1/1-1.png)    
 
 
 项目的架构是四个系统和九个模块：
@@ -87,7 +87,7 @@ litemall是一个简单的商场系统，基于现有的开源项目，重新实
 * 购物车
 * 下单
 * 个人
-* 订单列表、订单详情、订单售后
+* 订单列表、订单详情
 * 地址列表、地址添加、地址删除
 * 收藏、足迹、关于
 
@@ -142,7 +142,6 @@ litemall是一个简单的商场系统，基于现有的开源项目，重新实
   * 团购活动
 * 系统管理
   * 管理员
-  * 通知管理
   * 对象存储
   * 权限管理
   * 定时任务（待定）
@@ -156,9 +155,6 @@ litemall是一个简单的商场系统，基于现有的开源项目，重新实
   * 用户统计
   * 订单统计
   * 商品统计
-* 个人
-  * 通知中心
-  * 密码修改
 
 ## 1.3 项目技术
 
@@ -236,7 +232,7 @@ Spring Boot技术栈参考以下文档或者项目：
 
 接下来，从项目的开发、部署（测试）和上线三个阶段介绍litemall。
 
-![](./pics/project/stage.png)
+![](pic1/1-10.png)
 
 首先需要明确的是三个不同阶段：
 
@@ -277,7 +273,7 @@ Spring Boot技术栈参考以下文档或者项目：
 
 ## 1.4 开发方案
 
-![](./pics/project/develop-stage.png)
+![](pic1/1-2.png)
 
 如图所示，当前开发阶段的方案：
 
@@ -307,11 +303,11 @@ Spring Boot技术栈参考以下文档或者项目：
 如果开发者运行litemall_schema.sql失败，可以打开该文件：
 ```
 drop database if exists litemall;
-drop user if exists 'litemall'@'%';
+drop user if exists 'litemall'@'localhost';
 create database litemall default character set utf8mb4 collate utf8mb4_unicode_ci;
 use litemall;
-create user 'litemall'@'%' identified by 'litemall123456';
-grant all privileges on litemall.* to 'litemall'@'%';
+create user 'litemall'@'localhost' identified by 'litemall123456';
+grant all privileges on litemall.* to 'litemall'@'localhost';
 flush privilege
 ```
 可以看到几个命令，用于创建数据库、用户和访问权限，因此开发者可以利用
@@ -319,7 +315,7 @@ flush privilege
 
 ### 1.4.2 Spring Boot开发环境
 
-1. 安装JDK8（可以是Oracle JDK或者OpenJDK）
+1. 安装JDK8
 2. 安装Maven
 3. 安装Git（可选）
 4. 安装IDEA Community，建议安装Maven插件和Git插件。
@@ -336,7 +332,7 @@ flush privilege
    
    或者采用IDEA的Maven插件安装本项目依赖库，点击`install`
 
-    ![](./pics/project/idea-maven-insatll.png)
+    ![](pic1/1-8.png)
 
 7. 采用Maven命令编译本项目
 
@@ -363,7 +359,7 @@ flush privilege
    如果采用IDEA，则litemall-all模块的Application类
    右键` Run Application.main()`方式运行该模块,
    
-   ![](./pics/project/idea-run-all.png)
+   ![](pic1/1-9.png)
    
    打开浏览器，输入
     ```
@@ -422,12 +418,12 @@ flush privilege
 
 **项目配置结构**
 
-1. 管理后台前端，即litemall-admin模块，配置文件在litemall-admin中，存在三个配置文件`env.development`,`env.deployment`
-和`.env.production`。这里面配置信息都是一样，最主要的配置是`VUE_APP_BASE_API`，即管理后台的服务根地址。
+1. 管理后台前端，即litemall-admin模块，配置文件在litemall-admin/config中，存在三个配置文件`dev.env.js`,`dep.env.js`
+和`dep.env.js`。这里面配置信息都是一样，最主要的配置是`BASE_API`，即管理后台的服务根地址。
 
-   * 开发阶段，开发者运行命令`cnpm run dev`，这里就会采用`env.development`配置文件；
-   * 部署阶段，当开发者运行命令`cnpm run build:dep`，这里就会采用`env.deployment`配置文件；
-   * 上线阶段，当开发者运行命令`cnpm run build:prod`，这里就会采用`.env.production`配置文件。
+   * 开发阶段，开发者运行命令`cnpm run dev`，这里就会采用`dev.env.js`配置文件；
+   * 部署阶段，当开发者运行命令`cnpm run build:dep`，这里就会采用`dep.env.js`配置文件；
+   * 上线阶段，当开发者运行命令`cnpm run build:prod`，这里就会采用`prod.env.js`配置文件。
 
 2. 小商场前端，即litemall-wx模块，配置文件是`litemall-wx/project.config.json`和`litemall-wx/api.js`。
 这里面最主要的配置信息是`project.config.json`中的`appid`，开发者需要设置自己申请的appid；
@@ -500,7 +496,7 @@ spring:
   datasource:
     druid:
       url:  jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
-      driver-class-name:  com.mysql.cj.jdbc.Driver
+      driver-class-name:  com.mysql.jdbc.Driver
       username:  litemall
       password:  litemall123456
       initial-size:  10
@@ -639,6 +635,42 @@ litemall:
 2. 阿里云模板参数，本项目假定开发者在官方申请的参数格式应该采用"{ code: xxx, code1: xxx, code2: xxx }"，
 例如“你好，验证码是{code}，时间是{code1}"。开发者可以查看`AliyunSmsSender`类的`sendWithTemplate`方法的
 源代码即可理解。如果觉得不合理，可以自行调整相关代码。
+
+#### 1.4.5.7 微信通知配置
+
+微信通知是微信上收到的服务通知。
+
+在litemall-core模块的`application-core.yml`文件中配置微信通知服务：
+```
+litemall:
+  notify:
+    # 微信模版通知配置
+    # 微信模版用于通知客户或者运营者，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
+    wx:
+      enable: false
+      template:
+      - name: paySucceed
+        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - name: captcha
+        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - name: ship
+        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - name: refund
+        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```        
+
+配置方式：
+1. 微信公众平台申请，然后在`模板消息`中设置四个场景的微信模板；
+2. 开发者在配置文件设置`enable`的值`true`，然后其他信息设置
+微信公众平台中所设置模板ID。
+
+应用场景：
+目前微信通知场景只支持支付成功、验证码、订单发送、退款成功四种情况。
+以后可能需要继续优化扩展。
+
+验证配置成功：
+这里没有实现测试类，因为微信通知需要小程序前端的formId作为参数，因此需要
+小商城前端配合。开发者可以在实际场景中DBEUG看看。
 
 #### 1.4.5.8 物流配置
 
@@ -803,7 +835,7 @@ litemall:
 1. MySQL数据库设置合适的用户名和密码信息；
 2. 后端服务模块设置合适的配置信息；
 3. 小商场前端litemall-wx模块`config/api.js`的`WxApiRoot`设置小商场后端服务的服务地址；
-4. 管理后台前端litemall-admin模块`.env.deployment`中的`VUE_APP_BASE_API`设置管理后台后端服务的服务地址。
+4. 管理后台前端litemall-admin模块`config/dep.env.js`中的`BASE_API`设置管理后台后端服务的服务地址。
 
 实际上，最终的部署方案是灵活的：
 
@@ -826,7 +858,7 @@ litemall:
 
 主要流程是：创建云服务器，安装ubuntu操作系统，按照JDK和MySQL应用运行环境，部署单一Spring Boot服务。
 
-![](./pics/project/deploy-single.png)
+![](pic1/1-11.png)
 
 #### 1.5.1.1 云服务器
 
@@ -841,7 +873,7 @@ litemall:
 
 3. 创建安全组
 
-    ![](./pics/project/security-group.png)
+    ![](pic1/1-4.png)
 
     目前允许的端口：8080，80，443，22，3306
     
@@ -959,7 +991,7 @@ sudo mysql_secure_installation
 > 这里很可能是开发者litemall-admin模块的`config/dep.env.js`或者`condig/prod.env.js`
 > 没有设置正确的管理后台后端地址，例如这里的`http://xxx.xxx.xxx.xxx:8080/admin`
 
-#### 1.5.1.6 deploy部署脚本
+#### 1.5.1.6 项目辅助脚本
 
 在前面的项目打包和项目部署中都是采用手动命令来部署。
 这里可以写一些脚本简化：
@@ -995,10 +1027,6 @@ cd litemall
 
 不过由于需要设置的信息会包含敏感安全信息，强烈建议开发者参考这里的deploy文件夹，
 然后实现自己的deploy文件夹，妥善处置外部配置文件和脚本中的敏感安全信息!!!
-
-#### 1.5.1.7 docker部署脚本
-
-本项目也简单实现了docker部署方案，具体可以看docker文件夹。
 
 ### 1.5.2 单机多服务部署方案
 
@@ -1037,7 +1065,7 @@ cd litemall
 * 提供管理后台前端所需要的数据；
 * 提供小商城前端所需要的数据。
 
-![](./pics/project/online-deploy.png)
+![](pic1/1-12.png)
 
 
 开发者可以基于自身业务采用其他上线方案。
@@ -1160,7 +1188,7 @@ http://www.example.com
 总结，经过以上不同方面的配置，nginx这里最终的配置是如下：
 1. 证书`1_www.example.com_bundle.crt`和`2_www.example.com.key`放置在
     `/etc/nginx/`文件夹内。
-2. 把`/etc/nginx/nginx.conf`文件进行修改，具体可以参考[本项目的nginx.conf](./conf/nginx.conf)
+2. 把`/etc/nginx/nginx.conf`文件进行修改，具体可以参考[本项目的nginx.conf](./pic/nginx.conf)
 3. 重启nginx
 
 注意：
@@ -1204,7 +1232,7 @@ http://www.example.com
 1. MySQL数据库设置合适的用户名和密码信息；
 2. 管理后台后端服务模块设置合适的配置信息，建议开发者参考deploy/litemall的外部配置文件，
    这样可以避免开发者对模块内部的开发配置文件造成修改；
-3. 管理后台前端litemall-admin模块`.env.production`中的`VUE_APP_BASE_API`设置管理后台后端服务的服务地址。
+3. 管理后台前端litemall-admin模块`config/prod.env.js`中的`BASE_API`设置管理后台后端服务的服务地址。
 
 ### 1.6.5 项目评估
 
@@ -1339,11 +1367,11 @@ litemall-admin编译得到的前端文件在第一次加载时相当耗时，这
 
 这里deploy部署方式比较简单不灵活，开发者可以参考开发自己的项目脚本。
 
-#### 1.7.2.2 docker部署
+#### 1.7.2.2 .gitlab-ci.yml部署
 
-当前项目存在docker部署文件夹，这个是上述1.5.1节部署腾讯云服务器所采取的一些脚本。
+目前不支持
 
-#### 1.7.2.3 .gitlab-ci.yml部署
+#### 1.7.2.3 docker部署
 
 目前不支持
 
@@ -1423,9 +1451,9 @@ application配置文件中，但是问题就是数据库信息一旦改变则其
 3. 上线阶段，同样地，在litemall.jar包同级目录创建上线配置文件。
 
 此外，这里还可以采用另外一种思路，如下图：
-![](./pics/project/maven-profile.png)
-![](./pics/project/spring-profile.png)
-![](./pics/project/yml-resource.png)
+![](pic1/1-13.png)
+![](pic1/1-14.png)
+![](pic1/1-15.png)
 
 其实原理也很简单，就是配置文件采用application-{module}-{profile}.yml来支持不同模块不同阶段的配置需求。
 

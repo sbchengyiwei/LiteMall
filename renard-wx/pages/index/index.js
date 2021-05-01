@@ -24,6 +24,14 @@ Page({
     }
   },
 
+  saveFormId: function(v) {
+    if (v.detail.formId != 'the formId is a mock one') {
+      util.request(api.UserFormIdCreate, {
+        formId: v.detail.formId
+      });
+    }
+  },
+
   onPullDownRefresh() {
     this.getIndexData();
     wx.stopPullDownRefresh() //停止下拉刷新

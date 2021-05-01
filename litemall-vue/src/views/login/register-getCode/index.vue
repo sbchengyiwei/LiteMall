@@ -20,7 +20,6 @@
 <script>
 import field from '@/components/field/';
 import fieldGroup from '@/components/field-group/';
-import { mobileReg } from '@/utils/validate';
 
 export default {
   data() {
@@ -31,21 +30,7 @@ export default {
 
   methods: {
     submitCode() {
-      if(this.mobile === ''){
-        return
-      }
-      if(!mobileReg.test(this.mobile)){
-        this.mobile = ''
-        return
-      }
-    	try {
-        this.$router.push({
-          name: 'registerSubmit',
-          params: { phone: this.mobile}
-        });
-      } catch (error) {
-        console.log(error.message);
-      }
+      this.$router.push({ name: 'registerSubmit' });
     }
   },
 

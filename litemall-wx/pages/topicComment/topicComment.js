@@ -45,15 +45,15 @@ Page({
 
         if (that.data.showType == 0) {
           that.setData({
-            allCommentList: that.data.allCommentList.concat(res.data.list),
-            allPage: res.data.page,
-            comments: that.data.allCommentList.concat(res.data.list)
+            allCommentList: that.data.allCommentList.concat(res.data.data),
+            allPage: res.data.currentPage,
+            comments: that.data.allCommentList.concat(res.data.data)
           });
         } else {
           that.setData({
-            picCommentList: that.data.picCommentList.concat(res.data.list),
-            picPage: res.data.page,
-            comments: that.data.picCommentList.concat(res.data.list)
+            picCommentList: that.data.picCommentList.concat(res.data.data),
+            picPage: res.data.currentPage,
+            comments: that.data.picCommentList.concat(res.data.data)
           });
         }
       }
@@ -67,13 +67,6 @@ Page({
     });
     this.getCommentCount();
     this.getCommentList();
-  },
-  onPullDownRefresh() {
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.getCommentCount();
-    this.getCommentList();
-    wx.hideNavigationBarLoading() //完成停止加载
-    wx.stopPullDownRefresh() //停止下拉刷新
   },
   onReady: function() {
     // 页面渲染完成
@@ -91,30 +84,21 @@ Page({
     // 页面关闭
 
   },
-  switchTab: function () {
-    let that = this;
-    if (that.data.showType == 0) {
-      that.setData({
-        allCommentList: [],
-        allPage: 1,
-        comments: [],
-        showType: 1
-      });
-    } else {
-      that.setData({
-        picCommentList: [],
-        picPage: 1,
-        comments: [],
-        showType: 0
-      });
-    }
+  switchTab: function() {
+    this.setData({
+      showType: this.data.showType == 1 ? 0 : 1
+    });
+
     this.getCommentList();
   },
   onReachBottom: function() {
+    console.log('onPullDownRefresh');
     if (this.data.showType == 0) {
+
       if (this.data.allCount / this.data.limit < this.data.allPage) {
         return false;
       }
+
       this.setData({
         allPage: this.data.allPage + 1
       });
@@ -122,10 +106,14 @@ Page({
       if (this.data.hasPicCount / this.data.limit < this.data.picPage) {
         return false;
       }
+
       this.setData({
         picPage: this.data.picPage + 1
       });
     }
+
+
+
     this.getCommentList();
   }
 })

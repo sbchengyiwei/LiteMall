@@ -6,7 +6,7 @@ spring:
   datasource:
     druid:
       url:  jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
-      driver-class-name:  com.mysql.cj.jdbc.Driver
+      driver-class-name:  com.mysql.jdbc.Driver
       username:  litemall
       password:  litemall123456
       initial-size:  10
@@ -56,7 +56,6 @@ litemall:
       password: XXXXXXXXXXXXX
       sendfrom: ex@ex.com.cn
       sendto: ex@qq.com
-      port: 465
 
     # 短消息模版通知配置
     # 短信息用于通知客户，例如发货短信通知，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
@@ -82,6 +81,20 @@ litemall:
         regionId: xxx
         accessKeyId: xxx
         accessKeySecret: xxx
+
+    # 微信模版通知配置
+    # 微信模版用于通知客户或者运营者，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
+    wx:
+      enable: false
+      template:
+        - name: paySucceed
+          templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        - name: captcha
+          templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        - name: ship
+          templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        - name: refund
+          templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
   # 快鸟物流查询配置
   express:
@@ -143,6 +156,3 @@ litemall:
       accessKey: 111111
       secretKey: xxxxxx
       bucketName: litemall
-
-swagger:
-  production: true

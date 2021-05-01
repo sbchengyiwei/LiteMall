@@ -28,7 +28,7 @@ public class WxIssueController {
     /**
      * 帮助中心
      */
-    @GetMapping("/list")
+    @RequestMapping("/list")
     public Object list(String question,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer size,

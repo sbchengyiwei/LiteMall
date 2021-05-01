@@ -63,9 +63,7 @@ public class WxCatalogController {
         if (id != null) {
             currentCategory = categoryService.findById(id);
         } else {
-             if (l1CatList.size() > 0) {
-                currentCategory = l1CatList.get(0);
-            }
+            currentCategory = l1CatList.get(0);
         }
 
         // 当前一级分类目录对应的二级分类目录

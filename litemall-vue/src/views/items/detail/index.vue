@@ -391,12 +391,12 @@ export default {
 
 .item_desc {
   background-color: #fff;
-  ::v-deep p {
+  /deep/ p {
     padding: 0 10px;
     margin-block-start: 0 !important;
     margin-block-end: 0 !important;
   }
-  ::v-deep img {
+  /deep/ img {
     max-width: 100%;
     display: block;
   }

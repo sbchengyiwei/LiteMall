@@ -32,7 +32,7 @@ public class WxGrouponRuleService {
 
 
     public List<GrouponRuleVo> queryList(Integer page, Integer size, String sort, String order) {
-        Page<LitemallGrouponRules> grouponRulesList = (Page<LitemallGrouponRules>)grouponRulesService.queryList(page, size, sort, order);
+        Page<LitemallGrouponRules> grouponRulesList = (Page)grouponRulesService.queryList(page, size, sort, order);
 
         Page<GrouponRuleVo> grouponList = new Page<GrouponRuleVo>();
         grouponList.setPages(grouponRulesList.getPages());
@@ -56,7 +56,6 @@ public class WxGrouponRuleService {
             grouponRuleVo.setGrouponPrice(goods.getRetailPrice().subtract(rule.getDiscount()));
             grouponRuleVo.setGrouponDiscount(rule.getDiscount());
             grouponRuleVo.setGrouponMember(rule.getDiscountMember());
-            grouponRuleVo.setExpireTime(rule.getExpireTime());
             grouponList.add(grouponRuleVo);
         }
 

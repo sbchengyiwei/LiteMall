@@ -6,8 +6,6 @@ import '@/assets/scss/global.scss';
 import '@/assets/scss/iconfont/iconfont.css';
 
 import VueCountdown from '@chenfengyuan/vue-countdown';
-import store from './store'
-
 
 import filters from '@/filter';
 
@@ -36,6 +34,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app');
