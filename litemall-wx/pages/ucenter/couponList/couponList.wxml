@@ -2,13 +2,13 @@
 
   <view class="h">
     <view class="item {{ status == 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
-      <view class="txt">未使用</view>
+      <view class="txt">Unused</view>
     </view>
     <view class="item {{ status == 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
-      <view class="txt">已使用</view>
+      <view class="txt">Used</view>
     </view>
     <view class="item {{ status == 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
-      <view class="txt">已过期</view>
+      <view class="txt">Expired</view>
     </view>
   </view>
 
@@ -19,10 +19,10 @@
         <input class="coupon-sn" placeholder="请输入优惠码" value="{{code}}" bindinput="bindExchange"/>
         <image class="clear-icon" wx:if="{{ code.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearExchange"></image>
       </view>
-      <view class="add-btn" bindtap='goExchange'>兑换</view>
+      <view class="add-btn" bindtap='goExchange'>Exchange</view>
     </view>
 
-    <view class="help" wx:if="{{status == 0}}">使用说明</view>
+    <view class="help" wx:if="{{status == 0}}">Instruction</view>
 
     <scroll-view class="coupon-list" scroll-y="true" scroll-top="{{scrollTop}}">
 

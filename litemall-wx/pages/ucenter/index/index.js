@@ -6,7 +6,7 @@ var app = getApp();
 Page({
   data: {
     userInfo: {
-      nickName: '点击登录',
+      nickName: 'Click to Login',
       avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
     },
     order: {

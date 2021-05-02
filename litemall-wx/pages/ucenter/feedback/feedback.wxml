@@ -24,12 +24,12 @@
     <view class="text-count">{{contentLength}}/500</view>
   </view>
   <view class="fb-mobile">
-    <view class="label">手机号码</view>
+    <view class="label">Phone</view>
     <view class="mobile-box">
       <input class="mobile" maxlength="11" type="number" placeholder="方便我们与你联系" bindinput="mobileInput" value="{{mobile}}" />
       <image class="clear-icon" src="/static/images/clear_input.png" wx:if="{{ mobile.length > 0 }}" catchtap="clearMobile"></image>
     </view>
   </view>
 
-  <view class="fb-btn" bindtap="submitFeedback">提交</view>
+  <view class="fb-btn" bindtap="submitFeedback">Submit</view>
 </view>

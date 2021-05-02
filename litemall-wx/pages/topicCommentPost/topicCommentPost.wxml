@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class="rater">
-      <text class="rater-title">评分</text>
+      <text class="rater-title">Rate</text>
       <block wx:for="{{stars}}" wx:key="*this" wx:for-item="item">
         <image src="/static/images/icon_collect_checked.png" bindtap="selectRater" data-star="{{item}}" wx:if="{{item < star}}"></image>
         <image src="/static/images/icon_collect.png" bindtap="selectRater" data-star="{{item}}" wx:else></image>
@@ -26,7 +26,7 @@
 
     <view class="weui-uploader">
       <view class="weui-uploader__hd">
-        <view class="weui-uploader__title">图片上传</view>
+        <view class="weui-uploader__title">Upload Pictures</view>
         <view class="weui-uploader__info">{{picUrls.length}}/{{files.length}}</view>
       </view>
       <view class="weui-uploader__bd">
@@ -44,8 +44,8 @@
     </view>
 
     <view class="btns">
-      <view class="close" bindtap="onClose">取消</view>
-      <view class="post" bindtap="onPost">发表</view>
+      <view class="close" bindtap="onClose">Cancel</view>
+      <view class="post" bindtap="onPost">Post</view>
     </view>
   </view>
 </view>

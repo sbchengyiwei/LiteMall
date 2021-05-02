@@ -13,13 +13,13 @@
   <view class="sort">
     <view class="sort-box">
       <view class="item {{currentSortType == 'default' ? 'active' : ''}}" bindtap="openSortFilter" id="defaultSort">
-        <text class="txt">综合</text>
+        <text class="txt">Comprehensive</text>
       </view>
       <view class="item by-price {{currentSortType == 'price' ? 'active' : ''}} {{currentSortOrder == 'asc'  ? 'asc' : 'desc'}}" bindtap="openSortFilter" id="priceSort">
-        <text class="txt">价格</text>
+        <text class="txt">Price</text>
       </view>
       <view class="item {{currentSortType == 'category' ? 'active' : ''}}" bindtap="openSortFilter" id="categoryFilter">
-        <text class="txt">分类</text>
+        <text class="txt">Clategory</text>
       </view>
     </view>
     <view class="sort-box-category" wx-if="{{categoryFilter}}">

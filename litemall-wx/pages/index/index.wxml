@@ -86,7 +86,7 @@
   <view class="a-section a-brand">
     <view class="h">
       <navigator url="../brand/brand">
-        <text class="txt">品牌制造商直供</text>
+        <text class="txt">Direct supply from brand manufacturers</text>
       </navigator>
     </view>
     <view class="b">
@@ -108,7 +108,7 @@
     <view class="h">
       <view>
         <navigator url="../newGoods/newGoods">
-          <text class="txt">周一周四 · 新品首发</text>
+          <text class="txt">Monday Thursday · New product launch</text>
         </navigator>
       </view>
     </view>
@@ -127,7 +127,7 @@
     <view class="h">
       <view>
         <navigator url="../hotGoods/hotGoods">
-          <text class="txt">人气推荐</text>
+          <text class="txt">Popular recommendation</text>
         </navigator>
       </view>
     </view>
@@ -151,7 +151,7 @@
     <view class="h">
       <view>
         <navigator url="/pages/topic/topic">
-          <text class="txt">专题精选</text>
+          <text class="txt">Featured</text>
         </navigator>
       </view>
     </view>
@@ -186,7 +186,7 @@
       </block>
     </view>
     <navigator url="/pages/category/category?id={{item.id}}" class="t">
-      <view class="txt">{{'更多'+item.name+'好物 >'}}</view>
+      <view class="txt">{{'More'+item.name+'good things >'}}</view>
     </navigator>
   </view>
 </view>
