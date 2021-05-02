@@ -186,7 +186,7 @@
       </block>
     </view>
     <navigator url="/pages/category/category?id={{item.id}}" class="t">
-      <view class="txt">{{'More'+item.name+'good things >'}}</view>
+      <view class="txt">{{'More '+item.name+' good things >'}}</view>
     </navigator>
   </view>
 </view>

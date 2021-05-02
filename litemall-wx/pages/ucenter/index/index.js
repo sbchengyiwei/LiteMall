@@ -207,7 +207,9 @@ Page({
     });
   },  
   exitLogin: function() {
+    
     wx.showModal({
+       
       title: '',
       confirmColor: '#b4282d',
       content: 'Sign out?',

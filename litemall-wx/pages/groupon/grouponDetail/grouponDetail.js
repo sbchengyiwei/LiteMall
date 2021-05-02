@@ -175,10 +175,10 @@ Page({
   cancelOrder: function() {
     let that = this;
     let orderInfo = that.data.orderInfo;
-
+    
     wx.showModal({
       title: '',
-      content: '确定要取消此订单？',
+      content: 'Make sure you want to cancel this order？',
       success: function(res) {
         if (res.confirm) {
           util.request(api.OrderCancel, {
