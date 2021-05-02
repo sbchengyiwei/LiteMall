@@ -17,15 +17,15 @@
       <view class='share-info'>
         <button class="sharebtn" open-type="share" wx:if="{{!isGroupon}}">
           <image class='sharebtn_image' src='/static/images/wechat.png'></image>
-          <view class='sharebtn_text'>Share with your friends</view>
+          <view class='sharebtn_text'>Friends</view>
         </button>
         <button  class="savesharebtn" open-type="openSetting" bindopensetting="handleSetting" wx:if="{{(!isGroupon) && (!canWrite)}}" >
           <image class='sharebtn_image' src='/static/images/friend.png'></image>
-          <view class='sharebtn_text'>Post to Moments of friends</view>
+          <view class='sharebtn_text'>Moments</view>
         </button>
         <button class="savesharebtn" bindtap="saveShare" wx:if="{{!isGroupon && canWrite}}">
           <image class='sharebtn_image' src='/static/images/friend.png'></image>
-          <view class='sharebtn_text'>Moments of friends</view>
+          <view class='sharebtn_text'>Moments</view>
         </button>
       </view>
     </view>

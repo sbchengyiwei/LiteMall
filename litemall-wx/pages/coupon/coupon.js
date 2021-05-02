@@ -79,7 +79,7 @@ Page({
     });
     // 页面渲染完成
     wx.showToast({
-      title: '加载中...',
+      title: 'Loading...',
       icon: 'loading',
       duration: 2000
     });
@@ -114,7 +114,7 @@ Page({
     }, 'POST').then(res => {
       if (res.errno === 0) {
         wx.showToast({
-          title: "领取成功"
+          title: "Success!"
         })
       }
       else {

@@ -62,7 +62,7 @@ Page({
             }, 'POST').then(function(res) {
               if (res.errno === 0) {
                 wx.showToast({ 
-                  title: '删除成功',
+                  title: 'Success!',
                   icon: 'success',
                   duration: 2000
                 });

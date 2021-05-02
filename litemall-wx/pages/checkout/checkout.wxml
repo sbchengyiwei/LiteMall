@@ -44,7 +44,7 @@
   </view>
 
   <view class="message-box">
-    <input class="message-item" bindinput="bindMessageInput" placeholder="If necessary, please enter a message" value="{{message}}" />
+    <input class="message-item" bindinput="bindMessageInput" placeholder="Another Message" value="{{message}}" />
   </view>
 
   <view class="order-box">

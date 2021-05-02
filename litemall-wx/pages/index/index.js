@@ -136,7 +136,7 @@ Page({
     }, 'POST').then(res => {
       if (res.errno === 0) {
         wx.showToast({ 
-          title: "领取成功"
+          title: "Success!"
         })
       }
       else{

@@ -85,7 +85,7 @@ Page({
               if (res.errno === 0) {
                 console.log(res.data);
                 wx.showToast({ 
-                  title: '删除成功',
+                  title: 'Success!',
                   icon: 'success',
                   duration: 2000
                 });

@@ -40,7 +40,7 @@ Page({
     let that = this;
     return {
       title: that.data.goods.name,
-      desc: '唯爱与美食不可辜负',
+      desc: 'Look what I find on TJ-LiteMall ~',
       path: '/pages/index/index?goodId=' + this.data.id
     }
   },
@@ -610,7 +610,7 @@ Page({
           let _res = res;
           if (_res.errno == 0) {
             wx.showToast({ 
-              title: '添加成功'
+              title: 'Success!'
             });
             that.setData({
               openAttr: !that.data.openAttr,

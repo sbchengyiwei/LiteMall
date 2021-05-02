@@ -212,7 +212,7 @@ Page({
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
               wx.showToast({ 
-                title: '取消订单成功'
+                title: 'Success!'
               });
               util.redirect('/pages/ucenter/order/order');
             } else {
@@ -238,7 +238,7 @@ Page({
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
               wx.showToast({ 
-                title: '删除订单成功'
+                title: 'Success!'
               });
               util.redirect('/pages/ucenter/order/order');
             } else {
@@ -264,7 +264,7 @@ Page({
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
               wx.showToast({ 
-                title: '确认收货成功！'
+                title: 'Success!'
               });
               util.redirect('/pages/ucenter/order/order');
             } else {
