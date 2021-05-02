@@ -21,15 +21,15 @@ Page({
     openSelectRegion: false,
     selectRegionList: [{
         code: 0,
-        name: '省份'
+        name: 'province'
       },
       {
         code: 0,
-        name: '城市'
+        name: 'City'
       },
       {
         code: 0,
-        name: '区县'
+        name: 'District'
       }
     ],
     regionType: 1,
@@ -128,15 +128,15 @@ Page({
     } else {
       let selectRegionList = [{
             code: 0,
-            name: '省份',
+            name: 'Province',
           },
           {
             code: 0,
-            name: '城市',
+            name: 'City',
           },
           {
             code: 0,
-            name: '区县',
+            name: 'Distinct',
           }
         ];
 
@@ -241,7 +241,7 @@ Page({
     selectRegionList.map((item, index) => {
       if (index > regionType - 1) {
         item.code = 0;
-        item.name = index == 1 ? '城市' : '区县';
+        item.name = index == 1 ? 'City' : 'Distinct';
       }
       return item;
     });
@@ -301,29 +301,29 @@ Page({
     let address = this.data.address;
 
     if (address.name == '') {
-      util.showErrorToast('请输入姓名');
+      util.showErrorToast('Please enter your name');
 
       return false;
     }
 
     if (address.tel == '') {
-      util.showErrorToast('请输入手机号码');
+      util.showErrorToast('Please enter your mobile phone number');
       return false;
     }
 
 
     if (address.areaCode == 0) {
-      util.showErrorToast('请输入省市区');
+      util.showErrorToast('Please enter the province and city');
       return false;
     }
 
     if (address.addressDetail == '') {
-      util.showErrorToast('请输入详细地址');
+      util.showErrorToast('Please enter a detailed address');
       return false;
     }
 
     if (!check.isValidPhone(address.tel)) {
-      util.showErrorToast('手机号不正确');
+      util.showErrorToast('The cell phone number is incorrect');
       return false;
     }
 

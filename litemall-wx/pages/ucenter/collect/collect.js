@@ -13,7 +13,7 @@ Page({
   },
   getCollectList() {
     wx.showLoading({
-      title: '加载中...',
+      title: ' Loading...',
     });
     let that = this;
     util.request(api.CollectList, {
@@ -40,7 +40,7 @@ Page({
       });
       this.getCollectList();
     } else {
-      wx.showToast({
+      wx.showToast({ 
         title: '没有更多用户收藏了',
         icon: 'none',
         duration: 2000
@@ -84,7 +84,7 @@ Page({
             }, 'POST').then(function(res) {
               if (res.errno === 0) {
                 console.log(res.data);
-                wx.showToast({
+                wx.showToast({ 
                   title: '删除成功',
                   icon: 'success',
                   duration: 2000

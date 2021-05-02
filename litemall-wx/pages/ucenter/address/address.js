@@ -62,7 +62,7 @@ Page({
     let that = this;
     wx.showModal({
       title: '',
-      content: '确定要删除地址？',
+      content: 'Are you sure you want to delete the address?',
       success: function(res) {
         if (res.confirm) {
           let addressId = event.target.dataset.addressId;

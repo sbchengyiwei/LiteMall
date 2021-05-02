@@ -10,7 +10,7 @@
     <view class="error" wx:if="{{!status}}">
       <view class="msg">Payment Fail</view>
       <view class="tips">
-        <view class="p">Please pay in
+        <view class="p">Please pay within
           <text class="time">one of half hour</text> !</view>
         <view class="p">Otherwise the order will be cancelled by the system</view>
       </view>

@@ -35,7 +35,7 @@ Page({
 
     if (this.data.mobile.length == 0) {
       wx.showModal({
-        title: '错误信息',
+        title: 'Error',
         content: '手机号不能为空',
         showCancel: false
       });
@@ -44,7 +44,7 @@ Page({
 
     if (!check.isValidPhone(this.data.mobile)) {
       wx.showModal({
-        title: '错误信息',
+        title: 'Error',
         content: '手机号输入不正确',
         showCancel: false
       });
@@ -69,7 +69,7 @@ Page({
           });
         } else {
           wx.showModal({
-            title: '错误信息',
+            title: 'Error',
             content: res.data.errmsg,
             showCancel: false
           });
@@ -107,7 +107,7 @@ Page({
           });
         } else {
           wx.showModal({
-            title: '错误信息',
+            title: 'Error',
             content: res.data.errmsg,
             showCancel: false
           });
@@ -120,7 +120,7 @@ Page({
 
     if (this.data.password.length < 6 || this.data.username.length < 6) {
       wx.showModal({
-        title: '错误信息',
+        title: 'Error',
         content: '用户名和密码不得少于6位',
         showCancel: false
       });
@@ -129,7 +129,7 @@ Page({
 
     if (this.data.password != this.data.confirmPassword) {
       wx.showModal({
-        title: '错误信息',
+        title: 'Error',
         content: '确认密码不一致',
         showCancel: false
       });
@@ -138,7 +138,7 @@ Page({
 
     if (this.data.mobile.length == 0 || this.data.code.length == 0) {
       wx.showModal({
-        title: '错误信息',
+        title: 'Error',
         content: '手机号和验证码不能为空',
         showCancel: false
       });
@@ -147,7 +147,7 @@ Page({
 
     if (!check.isValidPhone(this.data.mobile)) {
       wx.showModal({
-        title: '错误信息',
+        title: 'Error',
         content: '手机号输入不正确',
         showCancel: false
       });
@@ -158,7 +158,7 @@ Page({
       success: function(res) {
         if (!res.code) {
           wx.showModal({
-            title: '错误信息',
+            title: 'Error',
             content: '注册失败',
             showCancel: false
           });

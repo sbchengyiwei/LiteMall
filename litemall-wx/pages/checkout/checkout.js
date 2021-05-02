@@ -78,7 +78,7 @@ Page({
   onShow: function() {
     // 页面显示
     wx.showLoading({
-      title: '加载中...',
+      title: ' Loading...',
     });
     try {
       var cartId = wx.getStorageSync('cartId');
@@ -132,7 +132,7 @@ Page({
   },
   submitOrder: function() {
     if (this.data.addressId <= 0) {
-      util.showErrorToast('Please select the delivery address');
+      util.showErrorToast('No address');
       return false;
     }
     util.request(api.OrderSubmit, {

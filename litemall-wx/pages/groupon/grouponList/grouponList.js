@@ -81,8 +81,8 @@ Page({
       grouponList: []
     });
     // 页面渲染完成
-    wx.showToast({
-      title: '加载中...',
+    wx.showToast({ 
+      title: ' Loading...',
       icon: 'loading',
       duration: 2000
     });

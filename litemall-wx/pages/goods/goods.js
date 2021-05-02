@@ -68,7 +68,7 @@ Page({
               canWrite: false
           })
       } else {
-          wx.showToast({
+          wx.showToast({ 
               title: '保存成功'
           })
           that.setData({
@@ -87,14 +87,14 @@ Page({
           filePath: res.tempFilePath,
           success: function(res) {
             wx.showModal({
-              title: '存图成功',
-              content: '图片成功保存到相册了，可以分享到朋友圈了',
+              title: 'The save chart was successful',
+              content: 'The picture was successfully saved to the album and can be shared with friends',
               showCancel: false,
-              confirmText: '好的',
+              confirmText: 'Sure',
               confirmColor: '#a78845',
               success: function(res) {
                 if (res.confirm) {
-                  console.log('用户点击确定');
+                  console.log('The user clicks OK');
                 }
               }
             })
@@ -146,12 +146,12 @@ Page({
             let _productPrice = res.data.productList[0].price;
             let _goodsPrice = res.data.info.retailPrice;
             if (_productPrice != _goodsPrice) {
-              console.error('商品数量价格和货品不一致');
+              console.error('The quantity price of goods is not consistent with the quantity of goods');
             }
 
             that.setData({
               checkedSpecText: _specificationList[0].valueList[0].value,
-              tmpSpecText: '已选择：' + _specificationList[0].valueList[0].value,
+              tmpSpecText: 'Selected:' + _specificationList[0].valueList[0].value,
             });
           }
         }
@@ -497,7 +497,7 @@ Page({
 
       //提示选择完整规格
       if (!this.isCheckedAllSpec()) {
-        wx.showToast({
+        wx.showToast({ 
           image: '/static/images/icon_error.png',
           title: 'Please select the complete specification'
         });
@@ -508,7 +508,7 @@ Page({
       let checkedProductArray = this.getCheckedProductItem(this.getCheckedSpecKey());
       if (!checkedProductArray || checkedProductArray.length <= 0) {
         //找不到对应的product信息，提示没有库存
-        wx.showToast({
+        wx.showToast({ 
           image: '/static/images/icon_error.png',
           title: '没有库存'
         });
@@ -518,7 +518,7 @@ Page({
       let checkedProduct = checkedProductArray[0];
       //验证库存
       if (checkedProduct.number <= 0) {
-        wx.showToast({
+        wx.showToast({ 
           image: '/static/images/icon_error.png',
           title: '没有库存'
         });
@@ -548,7 +548,7 @@ Page({
             } catch (e) {}
 
           } else {
-            wx.showToast({
+            wx.showToast({ 
               image: '/static/images/icon_error.png',
               title: res.errmsg,
               mask: true
@@ -572,7 +572,7 @@ Page({
 
       //提示选择完整规格
       if (!this.isCheckedAllSpec()) {
-        wx.showToast({
+        wx.showToast({ 
           image: '/static/images/icon_error.png',
           title: 'Please select the complete specification'
         });
@@ -583,7 +583,7 @@ Page({
       let checkedProductArray = this.getCheckedProductItem(this.getCheckedSpecKey());
       if (!checkedProductArray || checkedProductArray.length <= 0) {
         //找不到对应的product信息，提示没有库存
-        wx.showToast({
+        wx.showToast({ 
           image: '/static/images/icon_error.png',
           title: '没有库存'
         });
@@ -593,7 +593,7 @@ Page({
       let checkedProduct = checkedProductArray[0];
       //验证库存
       if (checkedProduct.number <= 0) {
-        wx.showToast({
+        wx.showToast({ 
           image: '/static/images/icon_error.png',
           title: '没有库存'
         });
@@ -609,7 +609,7 @@ Page({
         .then(function(res) {
           let _res = res;
           if (_res.errno == 0) {
-            wx.showToast({
+            wx.showToast({ 
               title: '添加成功'
             });
             that.setData({
@@ -626,7 +626,7 @@ Page({
               });
             }
           } else {
-            wx.showToast({
+            wx.showToast({ 
               image: '/static/images/icon_error.png',
               title: _res.errmsg,
               mask: true

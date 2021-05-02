@@ -168,8 +168,8 @@ Page({
     }
 
     if (!this.data.hasLogin) {
-      wx.showToast({
-        title: '绑定失败：请先登录',
+      wx.showToast({ 
+        title: 'Binding failed: Please log in first',
         icon: 'none',
         duration: 2000
       });
@@ -181,8 +181,8 @@ Page({
       encryptedData: e.detail.encryptedData
     }, 'POST').then(function(res) {
       if (res.errno === 0) {
-        wx.showToast({
-          title: '绑定手机号码成功',
+        wx.showToast({ 
+          title: 'The binding of the mobile phone number was successful',
           icon: 'success',
           duration: 2000
         });
@@ -190,8 +190,8 @@ Page({
     });
   },
   goAfterSale: function() {
-    wx.showToast({
-      title: '目前不支持',
+    wx.showToast({ 
+      title: 'Not currently supported',
       icon: 'none',
       duration: 2000
     });
@@ -210,7 +210,7 @@ Page({
     wx.showModal({
       title: '',
       confirmColor: '#b4282d',
-      content: '退出登录？',
+      content: 'Sign out?',
       success: function(res) {
         if (!res.confirm) {
           return;

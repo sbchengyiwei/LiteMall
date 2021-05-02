@@ -108,7 +108,7 @@ Page({
   },
   goExchange: function() {
     if (this.data.code.length === 0) {
-      util.showErrorToast("请输入兑换码");
+      util.showErrorToast("Please enter your redemption code");
       return;
     }
 
@@ -119,8 +119,8 @@ Page({
       if (res.errno === 0) {
         that.getCouponList();
         that.clearExchange();
-        wx.showToast({
-          title: "领取成功",
+        wx.showToast({ 
+          title: "The collection was successful",
           duration: 2000
         })
       }

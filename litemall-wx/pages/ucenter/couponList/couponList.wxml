@@ -16,7 +16,7 @@
 
     <view class="coupon-form" wx:if="{{status == 0}}">
       <view class="input-box">
-        <input class="coupon-sn" placeholder="请输入优惠码" value="{{code}}" bindinput="bindExchange"/>
+        <input class="coupon-sn" placeholder="Please enter the offer code" value="{{code}}" bindinput="bindExchange"/>
         <image class="clear-icon" wx:if="{{ code.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearExchange"></image>
       </view>
       <view class="add-btn" bindtap='goExchange'>Exchange</view>

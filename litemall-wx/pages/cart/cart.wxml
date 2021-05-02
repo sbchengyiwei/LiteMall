@@ -10,7 +10,7 @@
     <view class="service-policy">
       <view class="item">30-day worry-free return</view>
       <view class="item">48 hours fast refund</view>
-      <view class="item">Free shipping over 88 Dollar</view>
+      <view class="item">Free delivery  over 88 Dollar</view>
     </view>
     <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
       <view class="c">
@@ -53,7 +53,7 @@
         <view class='action_btn_area'>
           <view class="{{!isEditCart ? 'edit' : 'sure'}}" bindtap="editCart">{{!isEditCart ? 'Edit' : 'Finish'}}</view>
           <view class="delete" bindtap="deleteCart" wx:if="{{isEditCart}}">Delete({{cartTotal.checkedGoodsCount}})</view>
-          <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">Make Order</view>
+          <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">Buy</view>
           <!-- </view>  -->
         </view>
       </view>

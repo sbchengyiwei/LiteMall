@@ -27,8 +27,8 @@ Page({
   onShareAppMessage: function() {
     let that = this;
     return {
-      title: '邀请团购',
-      desc: '唯爱与美食不可辜负',
+      title: 'Invite groupon',
+      desc: 'Love and food cannot be lived up to',
       path: '/pages/index/index?grouponId=' + this.data.linkGrouponId
     }
   },
@@ -36,12 +36,12 @@ Page({
   shareGroupon: function() {
     let that = this;
     wx.showActionSheet({
-      itemList: ['分享给朋友', '分享到朋友圈'],
+      itemList: ['Share it with friends', 'Share it with a circle of friends'],
       success: function(res) {
         if (res.tapIndex == 0) {
           wx.showModal({
-            title: '提示',
-            content: '点击右上角 "..." 转发给朋友',
+            title: 'prompt',
+            content: 'Click on the upper right corner "..." forward to a friend',
             showCancel: false
           });
         } else if (res.tapIndex == 1) {
@@ -67,10 +67,10 @@ Page({
           filePath: res.tempFilePath,
           success: function(res) {
             wx.showModal({
-              title: '存图成功',
-              content: '图片成功保存到相册了，可以分享到朋友圈了',
+              title: 'The save chart was successful',
+              content: 'The picture was successfully saved to the album and can be shared with friends',
               showCancel: false,
-              confirmText: '好的',
+              confirmText: 'Sure',
               confirmColor: '#a78845',
               success: function(res) {
                 if (res.confirm) {
@@ -185,7 +185,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '取消订单成功'
               });
               util.redirect('/pages/ucenter/order/order');
@@ -211,7 +211,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '取消订单成功'
               });
               util.redirect('/pages/ucenter/order/order');
@@ -237,7 +237,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '删除订单成功'
               });
               util.redirect('/pages/ucenter/order/order');
@@ -263,7 +263,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '确认收货成功！'
               });
               util.redirect('/pages/ucenter/order/order');

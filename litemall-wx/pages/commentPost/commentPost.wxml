@@ -20,7 +20,7 @@
       <text class="rater-desc">{{starText}}</text>
     </view>
     <view class="input-box">
-      <textarea class="content" focus="true" bindinput="bindInputValue" maxlength="140" placeholder="留言经过筛选后，对所有人可见" />
+      <textarea class="content" focus="true" bindinput="bindInputValue" maxlength="140" placeholder="After the message is filtered, it will be visible to everyone" />
       <text class="count">{{140 - content.length}}</text>
     </view>
 

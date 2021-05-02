@@ -12,7 +12,7 @@ Page({
   },
   getFootprintList() {
     wx.showLoading({
-      title: '加载中...',
+      title: ' Loading...',
     });
     let that = this;
     util.request(api.FootprintList, {
@@ -61,7 +61,7 @@ Page({
               id: footprintId
             }, 'POST').then(function(res) {
               if (res.errno === 0) {
-                wx.showToast({
+                wx.showToast({ 
                   title: '删除成功',
                   icon: 'success',
                   duration: 2000
@@ -95,7 +95,7 @@ Page({
       });
       this.getFootprintList();
     } else {
-      wx.showToast({
+      wx.showToast({ 
         title: '没有更多用户足迹了',
         icon: 'none',
         duration: 2000

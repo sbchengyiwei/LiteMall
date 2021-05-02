@@ -31,7 +31,7 @@ Page({
   },
   getOrderDetail: function() {
     wx.showLoading({
-      title: '加载中',
+      title: ' Loading',
     });
 
     setTimeout(function() {
@@ -101,7 +101,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '取消订单成功'
               });
               util.redirect('/pages/ucenter/order/order');
@@ -127,7 +127,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '取消订单成功'
               });
               util.redirect('/pages/ucenter/order/order');
@@ -153,7 +153,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '删除订单成功'
               });
               util.redirect('/pages/ucenter/order/order');
@@ -179,7 +179,7 @@ Page({
             orderId: orderInfo.id
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
-              wx.showToast({
+              wx.showToast({ 
                 title: '确认收货成功！'
               });
               util.redirect('/pages/ucenter/order/order');

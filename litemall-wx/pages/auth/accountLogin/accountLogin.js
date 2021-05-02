@@ -34,8 +34,8 @@ Page({
 
     if (this.data.password.length < 1 || this.data.username.length < 1) {
       wx.showModal({
-        title: '错误信息',
-        content: '请输入用户名和密码',
+        title: 'Error message',
+        content: 'Please enter your username and password',
         showCancel: false
       });
       return false;
@@ -72,7 +72,7 @@ Page({
             loginErrorCount: that.data.loginErrorCount + 1
           });
           app.globalData.hasLogin = false;
-          util.showErrorToast('账户登录失败');
+          util.showErrorToast('Account login failed');
         }
       }
     });

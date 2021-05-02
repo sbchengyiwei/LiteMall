@@ -86,7 +86,7 @@ Page({
           that.getGoodsList();
 
         } else {
-          //显示错误信息
+          //显示Error
         }
 
       });

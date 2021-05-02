@@ -10,7 +10,7 @@
     </view>
   </picker>
   <view class="fb-body">
-    <textarea class="content" placeholder="对我们网站、商品、服务，你还有什么建议吗？你还希望在商城上买到什么？请告诉我们..." bindinput="contentInput" maxlength="500" auto-focus="true" value="{{content}}" />
+    <textarea class="content" placeholder="Do you have any suggestions for our website, goods and services? What else would you like to buy in the mall? Please tell us..." bindinput="contentInput" maxlength="500" auto-focus="true" value="{{content}}" />
     <view class="weui-uploader__files" id="uploaderFiles">
       <block wx:for="{{files}}" wx:key="*this">
         <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
@@ -26,7 +26,7 @@
   <view class="fb-mobile">
     <view class="label">Phone</view>
     <view class="mobile-box">
-      <input class="mobile" maxlength="11" type="number" placeholder="方便我们与你联系" bindinput="mobileInput" value="{{mobile}}" />
+      <input class="mobile" maxlength="11" type="number" placeholder="It is convenient for us to contact you" bindinput="mobileInput" value="{{mobile}}" />
       <image class="clear-icon" src="/static/images/clear_input.png" wx:if="{{ mobile.length > 0 }}" catchtap="clearMobile"></image>
     </view>
   </view>

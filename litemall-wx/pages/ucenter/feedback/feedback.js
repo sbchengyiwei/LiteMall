@@ -113,7 +113,7 @@ Page({
     }
 
     if (that.data.mobile == '') {
-      util.showErrorToast('请输入手机号码');
+      util.showErrorToast('Please enter your mobile phone number');
       return false;
     }
 
@@ -143,7 +143,7 @@ Page({
       wx.hideLoading();
 
       if (res.errno === 0) {
-        wx.showToast({
+        wx.showToast({ 
           title: 'Thanks for your feedback!',
           icon: 'success',
           duration: 2000,

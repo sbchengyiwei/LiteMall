@@ -79,9 +79,11 @@ function redirect(url) {
 }
 
 function showErrorToast(msg) {
-  wx.showToast({
+  wx.showToast({ 
+    icon: 'none',
     title: msg,
-    image: '/static/images/icon_error.png'
+    
+    
   })
 }
 

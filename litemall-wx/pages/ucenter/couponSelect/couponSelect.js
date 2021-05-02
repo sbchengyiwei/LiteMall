@@ -33,7 +33,7 @@ Page({
   onShow: function () {
     // 页面显示
     wx.showLoading({
-      title: '加载中...',
+      title: ' Loading...',
     });
 
     try {
@@ -112,8 +112,8 @@ Page({
       couponList: []
     });
     // 页面渲染完成
-    wx.showToast({
-      title: '加载中...',
+    wx.showToast({ 
+      title: ' Loading...',
       icon: 'loading',
       duration: 2000
     });

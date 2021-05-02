@@ -135,7 +135,7 @@ Page({
       couponId: couponId
     }, 'POST').then(res => {
       if (res.errno === 0) {
-        wx.showToast({
+        wx.showToast({ 
           title: "领取成功"
         })
       }

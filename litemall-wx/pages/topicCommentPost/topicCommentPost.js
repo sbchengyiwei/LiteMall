@@ -124,7 +124,7 @@ Page({
     let that = this;
 
     if (!this.data.content) {
-      util.showErrorToast('请填写评论')
+      util.showErrorToast('Please fill in the comments')
       return false;
     }
 
@@ -137,8 +137,8 @@ Page({
       picUrls: that.data.picUrls
     }, 'POST').then(function(res) {
       if (res.errno === 0) {
-        wx.showToast({
-          title: '评论成功',
+        wx.showToast({ 
+          title: 'The comment was successful',
           complete: function() {
             wx.navigateBack();
           }
