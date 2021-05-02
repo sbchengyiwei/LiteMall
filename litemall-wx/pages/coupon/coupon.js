@@ -78,8 +78,8 @@ Page({
       couponList: []
     });
     // 页面渲染完成
-    wx.showToast({ 
-      title: ' Loading...',
+    wx.showToast({
+      title: '加载中...',
       icon: 'loading',
       duration: 2000
     });
@@ -113,7 +113,7 @@ Page({
       couponId: couponId
     }, 'POST').then(res => {
       if (res.errno === 0) {
-        wx.showToast({ 
+        wx.showToast({
           title: "领取成功"
         })
       }
