@@ -5,13 +5,13 @@
       <view class="tag">{{item.tag}}</view>
       <view class="content">
         <view class="left">
-          <view class="discount">{{item.discount}}元</view>
-          <view class="min"> 满{{item.min}}元使用</view>
+          <view class="discount">{{item.discount}}$</view>
+          <view class="min"> Use when more than {{item.min}}</view>
         </view>
         <view class="right">
           <view class="name">{{item.name}}</view>
-          <view class="time" wx:if="{{item.days != 0}}">有效期：{{item.days}}天</view>
-          <view class="time" wx:else> 有效期：{{item.startTime}} - {{item.endTime}}</view>
+          <view class="time" wx:if="{{item.days != 0}}">Valid period：{{item.days}} days</view>
+          <view class="time" wx:else> Valid period：{{item.startTime}} - {{item.endTime}}</view>
         </view>
       </view>
       <view class="condition">
@@ -21,8 +21,8 @@
     </view>
 
     <view class="page" wx:if="{{showPage}}">
-      <view class="prev {{ page <= 1 ? 'disabled' : ''}}" bindtap="prevPage">上一页</view>
-      <view class="next {{ (count / limit) < page ? 'disabled' : ''}}" bindtap="nextPage">下一页</view>
+      <view class="prev {{ page <= 1 ? 'disabled' : ''}}" bindtap="prevPage">Last Page</view>
+      <view class="next {{ (count / limit) < page ? 'disabled' : ''}}" bindtap="nextPage">Next Page</view>
     </view>
   </scroll-view>
 </view>

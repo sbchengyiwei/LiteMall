@@ -16,7 +16,7 @@
               <view class="text">
                 <text class="name">{{item.name}}</text>
                 <text class="desc">{{item.brief}}</text>
-                <text class="price">￥{{item.retailPrice}}</text>
+                <text class="price">${{item.retailPrice}}</text>
               </view>
             </view>
           </navigator>

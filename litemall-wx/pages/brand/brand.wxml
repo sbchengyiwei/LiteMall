@@ -8,7 +8,7 @@
         <view class="line">
           <text class="name">{{item.name}}</text>
           <text class="s">|</text>
-          <text class="price">{{item.floorPrice}}元起</text>
+          <text class="price"> From {{item.floorPrice}} </text>
         </view>
       </view>
     </navigator>

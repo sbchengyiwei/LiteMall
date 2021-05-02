@@ -1,8 +1,8 @@
 litemall:
   # 开发者应该设置成自己的wx相关信息
   wx:
-    app-id: 小程序ID
-    app-secret: 小程序密钥
+    app-id: wx2cd2c14ba47ff3fa
+    app-secret: 36b8e2112c1296ee3c069dd40a43021e
     mch-id: 商户ID
     mch-key: 商户密钥
     notify-url: 支付回调地址
@@ -110,10 +110,10 @@ litemall:
       bucketName: litemall
     # 腾讯对象存储配置信息
     tencent:
-      secretId: 腾讯云存储ID
-      secretKey: 腾讯云存储密钥
-      region: 地区信息
-      bucketName: 桶信息
+      secretId: AKIDITXWGlkLOAYrAE4h8TAdtsfDgvHRe1DB
+      secretKey: ub5e5qOm7NPE9tELFvQxHVZYcHjxwgJi
+      region: ap-shanghai
+      bucketName: tj-litemall-1305796762
     # 七牛云对象存储配置信息
     qiniu:
       endpoint: http://pd5cb6ulu.bkt.clouddn.com

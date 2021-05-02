@@ -1,21 +1,21 @@
 <view class="container">
   <view class="order-info">
-    <view class="item-a">下单时间：{{orderInfo.addTime}}</view>
-    <view class="item-b">订单编号：{{orderInfo.orderSn}}</view>
+    <view class="item-a">Order time：{{orderInfo.addTime}}</view>
+    <view class="item-b">Order number：{{orderInfo.orderSn}}</view>
     <view class="item-c">
-      <view class="l">实付：
-        <text class="cost">￥{{orderInfo.actualPrice}}</text>
+      <view class="l">Actually paid：
+        <text class="cost">${{orderInfo.actualPrice}}</text>
       </view>
       <view class="r">
-        <view class="btn active" bindtap="shareGroupon">邀请参团</view>
+        <view class="btn active" bindtap="shareGroupon">Invite to join the groupon</view>
       </view>
     </view>
   </view>
 
   <view class="menu-list-pro">
     <view class="h">
-      <view class="label">参与团购 ( {{joiners.length}}人)</view>
-      <view class="status">查看全部</view>
+      <view class="label">Participate in groupon ( {{joiners.length}}人)</view>
+      <view class="status">view all</view>
     </view>
     <view class="menu-list-item" wx:for-items="{{joiners}}" wx:key="id" data-id="{{item.id}}">
       <image class="icon" src="{{item.avatar}}"></image>
@@ -25,7 +25,7 @@
 
   <view class="order-goods">
     <view class="h">
-      <view class="label">商品信息</view>
+      <view class="label">Product information</view>
       <view class="status">{{orderInfo.orderStatusText}}</view>
     </view>
     <view class="goods">
@@ -39,7 +39,7 @@
             <text class="number">x{{item.number}}</text>
           </view>
           <view class="attr">{{item.goodsSpecificationValues}}</view>
-          <view class="price">￥{{item.retailPrice}}</view>
+          <view class="price">${{item.retailPrice}}</view>
         </view>
       </view>
     </view>
@@ -54,17 +54,17 @@
       </view>
       <view class="total">
         <view class="t">
-          <text class="label">商品合计：</text>
-          <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+          <text class="label">Total：</text>
+          <text class="txt">${{orderInfo.goodsPrice}}</text>
         </view>
         <view class="t">
-          <text class="label">运费：</text>
-          <text class="txt">￥{{orderInfo.freightPrice}}</text>
+          <text class="label">Delivery：</text>
+          <text class="txt">${{orderInfo.freightPrice}}</text>
         </view>
       </view>
       <view class="pay-fee">
-        <text class="label">实付：</text>
-        <text class="txt">￥{{orderInfo.actualPrice}}</text>
+        <text class="label">Real Pay：</text>
+        <text class="txt">${{orderInfo.actualPrice}}</text>
       </view>
     </view>
   </view>
@@ -73,8 +73,8 @@
   <view class="order-express" bindtap="expandDetail" wx:if="{{ handleOption.confirm }}">
     <view class="expand">
       <view class="title">
-        <view class="t">快递公司：{{expressInfo.shipperName}}</view>
-        <view class="b">物流单号：{{expressInfo.logisticCode}}</view>
+        <view class="t">Courier company：{{expressInfo.shipperName}}</view>
+        <view class="b">Shipment number:{{expressInfo.logisticCode}}</view>
       </view>
       <image class="ti" src="/static/images/address_right.png" background-size="cover"></image>
     </view>

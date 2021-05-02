@@ -595,8 +595,8 @@ CREATE TABLE `litemall_permission` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `litemall_region`
---
+-- Table structure for table `litemall_`
+--region
 
 DROP TABLE IF EXISTS `litemall_region`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

@@ -2,18 +2,18 @@
 
   <scroll-view class="coupon-list" scroll-y="true" scroll-top="{{scrollTop}}">
 
-    <view class="unselect" bindtap='unselectCoupon'>不选择优惠券</view>
+    <view class="unselect" bindtap='unselectCoupon'>Don't Use Coupon</view>
 
     <view class="item" wx:for="{{couponList}}" wx:for-index="index" wx:for-item="item" wx:key="id" bindtap="selectCoupon" data-id="{{item.id}}" data-cid="{{item.cid}}">
       <view class="tag">{{item.tag}}</view>
       <view class="content">
         <view class="left">
-          <view class="discount">{{item.discount}}元</view>
-          <view class="min"> 满{{item.min}}元使用</view>
+          <view class="discount">{{item.discount}}$</view>
+          <view class="min"> Use when over ${{item.min}}</view>
         </view>
         <view class="right">
           <view class="name">{{item.name}}</view>
-          <view class="time"> 有效期：{{item.startTime}} - {{item.endTime}}</view>
+          <view class="time"> Valid Period：{{item.startTime}} - {{item.endTime}}</view>
         </view>
       </view>
       <view class="condition">

@@ -1,10 +1,10 @@
 <view class="comments">
   <view class="h">
     <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab">
-      <view class="txt">全部({{allCount}})</view>
+      <view class="txt">Total({{allCount}})</view>
     </view>
     <view class="item {{ showType == 0 ? '' : 'active'}}" bindtap="switchTab">
-      <view class="txt">有图({{hasPicCount}})</view>
+      <view class="txt">Picture({{hasPicCount}})</view>
     </view>
   </view>
   <view class="b">
@@ -21,7 +21,7 @@
         <image class="img" wx:for="{{item.picList}}" wx:key="*this" wx:for-item="pitem" src="{{pitem}}"></image>
       </view>
       <view class="customer-service" wx:if="{{item.reply}}">
-        <text class="u">小商场回复：</text>
+        <text class="u">Reply from the litemall:</text>
         <text class="c">{{item.reply}}</text>
       </view>
     </view>

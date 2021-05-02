@@ -4,7 +4,7 @@
     <view class="item-b">订单编号：{{orderInfo.orderSn}}</view>
     <view class="item-c">
       <view class="l">实付：
-        <text class="cost">￥{{orderInfo.actualPrice}}</text>
+        <text class="cost">${{orderInfo.actualPrice}}</text>
       </view>
       <view class="r">
         <view class="btn active" bindtap="cancelOrder" wx:if="{{handleOption.cancel}}">取消订单</view>
@@ -32,7 +32,7 @@
             <text class="number">x{{item.number}}</text>
           </view>
           <view class="attr">{{item.specifications}}</view>
-          <view class="price">￥{{item.price}}</view>
+          <view class="price">${{item.price}}</view>
           <view class="btn active" wx:if="{{handleOption.comment && (item.comment == 0)}}">
             <navigator url="../../commentPost/commentPost?orderId={{item.orderId}}&&valueId={{item.goodsId}}&type=0">去评价</navigator>
           </view>
@@ -54,20 +54,20 @@
       <view class="total">
         <view class="t">
           <text class="label">商品合计：</text>
-          <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+          <text class="txt">${{orderInfo.goodsPrice}}</text>
         </view>
         <view class="t">
           <text class="label">运费：</text>
-          <text class="txt">￥{{orderInfo.freightPrice}}</text>
+          <text class="txt">${{orderInfo.freightPrice}}</text>
         </view>
         <view class="t">
           <text class="label">优惠：</text>
-          <text class="txt">￥-{{orderInfo.couponPrice}}</text>
+          <text class="txt">$-{{orderInfo.couponPrice}}</text>
         </view>
       </view>
       <view class="pay-fee">
-        <text class="label">实付：</text>
-        <text class="txt">￥{{orderInfo.actualPrice}}</text>
+        <text class="label">Real Pay：</text>
+        <text class="txt">${{orderInfo.actualPrice}}</text>
       </view>
     </view>
   </view>

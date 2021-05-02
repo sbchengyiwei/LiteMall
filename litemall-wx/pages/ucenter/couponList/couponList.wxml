@@ -30,12 +30,12 @@
         <view class="tag">{{item.tag}}</view>
         <view class="content">
           <view class="left">
-            <view class="discount">{{item.discount}}元</view>
-            <view class="min"> 满{{item.min}}元使用</view>
+            <view class="discount">{{item.discount}}$</view>
+            <view class="min"> Use when more than ${{item.min}}</view>
           </view>
           <view class="right">
             <view class="name">{{item.name}}</view>
-            <view class="time"> 有效期：{{item.startTime}} - {{item.endTime}}</view>
+            <view class="time"> Valid Period：{{item.startTime}} - {{item.endTime}}</view>
           </view>
         </view>
         <view class="condition">

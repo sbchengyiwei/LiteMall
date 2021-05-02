@@ -2,7 +2,7 @@
   <view class="search">
     <navigator url="/pages/search/search" class="input">
       <image class="icon"></image>
-      <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
+      <text class="txt">Product search, a total of {{goodsCount}} good things</text>
     </navigator>
   </view>
   <view class="catalog">
@@ -16,7 +16,7 @@
       </navigator>
       <view class="hd">
         <text class="line"></text>
-        <text class="txt">{{currentCategory.name}}分类</text>
+        <text class="txt">{{currentCategory.name}} Category</text>
         <text class="line"></text>
       </view>
       <view class="bd">

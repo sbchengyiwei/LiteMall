@@ -3,7 +3,7 @@
   <view class="about-item">
 
     <view class="item-left">
-      <label>项目名称: </label>
+      <label>Project Name: </label>
        <text>{{shopInfo.name}}</text> 
     </view>
 
@@ -11,7 +11,7 @@
 
   <view class="about-item">
     <view class="item-left">
-      <label>项目地址: </label>
+      <label>Project Adress: </label>
        <text>{{shopInfo.address}}</text> 
     </view>
 

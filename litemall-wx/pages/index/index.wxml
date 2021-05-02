@@ -3,7 +3,7 @@
 <view class="search">
     <navigator url="/pages/search/search" class="input">
       <image class="icon"></image>
-      <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
+      <text class="txt">Product search, a total of {{goodsCount}} good things</text>
     </navigator>
   </view>
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
@@ -25,7 +25,7 @@
       <view class="title">
         <view>
           <navigator url="/pages/coupon/coupon">
-            <text class="txt">优惠券</text>
+            <text class="txt">Coupon</text>
           </navigator>
         </view>
       </view>
@@ -35,14 +35,14 @@
         <view class="tag">{{item.tag}}</view>
         <view class="content">
           <view class="left">
-            <view class="discount">{{item.discount}}元</view>
-            <view class="min"> 满{{item.min}}元使用</view>
+            <view class="discount">{{item.discount}}$</view>
+            <view class="min"> Full use of {{item.min}}</view>
           </view>
           <view class="right">
             <view class="name">{{item.name}}</view>
             <view class="desc">{{item.desc}}</view>
-            <view class="time" wx:if="{{item.days != 0}}">有效期：{{item.days}}天</view>
-            <view class="time" wx:else> 有效期：{{item.startTime}} - {{item.endTime}}</view>
+            <view class="time" wx:if="{{item.days != 0}}">Validity period: {{item.days}} days</view>
+            <view class="time" wx:else> Validity period: {{item.startTime}}-{{item.endTime}}</view>
           </view>
         </view>
       </view>
@@ -54,7 +54,7 @@
       <view class="title">
         <view>
           <navigator url="/pages/groupon/grouponList/grouponList">
-            <text class="txt">团购专区</text>
+            <text class="txt">Groupon area</text>
           </navigator>
         </view>
       </view>
@@ -68,13 +68,13 @@
               <view class="header">
                 <text class="name">{{item.name}}</text>
                 <view class="capsule-tag">
-                  <zan-capsule color="#a78845" leftText="{{item.grouponMember}}人成团" rightText="立减{{item.grouponDiscount}}" />
+                  <zan-capsule color="#a78845" leftText="{{item.grouponMember}} People" rightText="Dis {{item.grouponDiscount}}" />
                 </view>
               </view>
               <text class="desc">{{item.brief}}</text>
               <view class="price">
-                <view class="counterPrice">现价：￥{{item.retailPrice}}</view>
-                <view class="retailPrice">团购价：￥{{item.grouponPrice}}</view>
+                <view class="counterPrice">Current Price：${{item.retailPrice}}</view>
+                <view class="retailPrice">Groupon Price：${{item.grouponPrice}}</view>
               </view>
             </view>
           </view>
@@ -96,8 +96,8 @@
             <image class="img" src="{{item.picUrl}}" mode="aspectFill"></image>
             <view class="mt">
               <text class="brand">{{item.name}}</text>
-              <text class="price">{{item.floorPrice}}</text>
-              <text class="unit">元起</text>
+              <text class="price">From {{item.floorPrice}}</text>
+              <text class="unit"></text>
             </view>
           </view>
         </navigator>
@@ -117,7 +117,7 @@
         <navigator url="../goods/goods?id={{item.id}}">
           <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
           <text class="name">{{item.name}}</text>
-          <text class="price">￥{{item.retailPrice}}</text>
+          <text class="price">${{item.retailPrice}}</text>
         </navigator>
       </view>
     </view>
@@ -139,7 +139,7 @@
             <view class="text">
               <text class="name">{{item.name}}</text>
               <text class="desc">{{item.brief}}</text>
-              <text class="price">￥{{item.retailPrice}}</text>
+              <text class="price">${{item.retailPrice}}</text>
             </view>
           </view>
         </navigator>
@@ -162,7 +162,7 @@
             <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
             <view class="np">
               <text class="name">{{item.title}}</text>
-              <text class="price">￥{{item.price}}元起</text>
+              <text class="price">From ${{item.price}}</text>
             </view>
             <text class="desc">{{item.subtitle}}</text>
           </navigator>
@@ -180,7 +180,7 @@
           <navigator url="../goods/goods?id={{iitem.id}}" class="a">
             <image class="img" src="{{iitem.picUrl}}" background-size="cover"></image>
             <text class="name">{{iitem.name}}</text>
-            <text class="price">￥{{iitem.retailPrice}}</text>
+            <text class="price">${{iitem.retailPrice}}</text>
           </navigator>
         </view>
       </block>

@@ -11,7 +11,7 @@
       <view class="info">
         <view class="name">{{item.name}}</view>
         <view class="subtitle">{{item.brief}}</view>
-        <view class="price">￥{{item.retailPrice}}</view>
+        <view class="price">${{item.retailPrice}}</view>
       </view>
     </view>
   </view>
