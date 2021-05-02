@@ -10,7 +10,7 @@
     <view class="service-policy">
       <view class="item">30-day worry-free return</view>
       <view class="item">48 hours fast refund</view>
-      <view class="item">Free shipping over 88 yuan</view>
+      <view class="item">Free shipping over 88 Dollar</view>
     </view>
     <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
       <view class="c">

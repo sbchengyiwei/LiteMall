@@ -21,8 +21,8 @@ Page({
     cartGoodsCount: 0,
     userHasCollect: 0,
     number: 1,
-    checkedSpecText: '规格数量选择',
-    tmpSpecText: '请选择规格数量',
+    checkedSpecText: 'Select Specification &Quantity',
+    tmpSpecText: 'Select Specification &Quantity',
     checkedSpecPrice: 0,
     openAttr: false,
     openShare: false,
@@ -354,7 +354,7 @@ Page({
       });
     } else {
       this.setData({
-        tmpSpecText: '请选择规格数量'
+        tmpSpecText: 'Select Specification &Quantity'
       });
     }
 
@@ -388,7 +388,7 @@ Page({
 
     } else {
       this.setData({
-        checkedSpecText: '规格数量选择',
+        checkedSpecText: 'Select Specification &Quantity',
         checkedSpecPrice: this.data.goods.retailPrice,
         soldout: false
       });
@@ -499,7 +499,7 @@ Page({
       if (!this.isCheckedAllSpec()) {
         wx.showToast({
           image: '/static/images/icon_error.png',
-          title: '请选择完整规格'
+          title: 'Please select the complete specification'
         });
         return false;
       }
@@ -574,7 +574,7 @@ Page({
       if (!this.isCheckedAllSpec()) {
         wx.showToast({
           image: '/static/images/icon_error.png',
-          title: '请选择完整规格'
+          title: 'Please select the complete specification'
         });
         return false;
       }

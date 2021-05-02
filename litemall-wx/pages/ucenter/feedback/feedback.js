@@ -6,7 +6,7 @@ var app = getApp();
 
 Page({
   data: {
-    array: ['请选择反馈类型', '商品相关', '功能异常', '优化建议', '其他'],
+    array: ['Please select feedback type', 'Commodity related', 'Dysfunction', 'Optimization suggestion', 'Other'],
     index: 0,
     content: '',
     contentLength: 0,
@@ -103,12 +103,12 @@ Page({
 
     let that = this;
     if (that.data.index == 0) {
-      util.showErrorToast('请选择反馈类型');
+      util.showErrorToast('Please select feedback type');
       return false;
     }
 
     if (that.data.content == '') {
-      util.showErrorToast('请输入反馈内容');
+      util.showErrorToast('Please enter feedback content');
       return false;
     }
 
@@ -121,12 +121,12 @@ Page({
       this.setData({
         mobile: ''
       });
-      util.showErrorToast('请输入手机号码');
+      util.showErrorToast('Please enter the phone number');
       return false;
     }
 
     wx.showLoading({
-      title: '提交中...',
+      title: 'submitting...',
       mask: true,
       success: function() {
 
@@ -144,7 +144,7 @@ Page({
 
       if (res.errno === 0) {
         wx.showToast({
-          title: '感谢您的反馈！',
+          title: 'Thanks for your feedback!',
           icon: 'success',
           duration: 2000,
           complete: function() {
